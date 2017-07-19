@@ -61,6 +61,10 @@
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.ddlRegenStats = new System.Windows.Forms.ComboBox();
+            this.label66 = new System.Windows.Forms.Label();
+            this.ddlInhabitType = new System.Windows.Forms.ComboBox();
+            this.label65 = new System.Windows.Forms.Label();
             this.txtFaction = new System.Windows.Forms.TextBox();
             this.label47 = new System.Windows.Forms.Label();
             this.label37 = new System.Windows.Forms.Label();
@@ -127,8 +131,6 @@
             this.clbSchoolImmune = new System.Windows.Forms.CheckedListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
-            this.pictureBox6 = new System.Windows.Forms.PictureBox();
             this.label52 = new System.Windows.Forms.Label();
             this.txtMaxMoneyC = new System.Windows.Forms.TextBox();
             this.txtMaxMoneyS = new System.Windows.Forms.TextBox();
@@ -165,35 +167,33 @@
             this.clbExtraFlags = new System.Windows.Forms.CheckedListBox();
             this.txtExtraFlagsMask = new System.Windows.Forms.TextBox();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
+            this.txtEquipRange = new System.Windows.Forms.TextBox();
+            this.label61 = new System.Windows.Forms.Label();
+            this.txtEquipLeft = new System.Windows.Forms.TextBox();
+            this.label54 = new System.Windows.Forms.Label();
+            this.label53 = new System.Windows.Forms.Label();
+            this.txtEquipRight = new System.Windows.Forms.TextBox();
             this.label51 = new System.Windows.Forms.Label();
             this.txtEquipmentTemplateId = new System.Windows.Forms.TextBox();
-            this.txtEquipRight = new System.Windows.Forms.TextBox();
-            this.label53 = new System.Windows.Forms.Label();
-            this.label54 = new System.Windows.Forms.Label();
-            this.txtEquipLeft = new System.Windows.Forms.TextBox();
             this.groupBox7 = new System.Windows.Forms.GroupBox();
-            this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
-            this.label57 = new System.Windows.Forms.Label();
-            this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
-            this.label59 = new System.Windows.Forms.Label();
+            this.txtBaseRangeAP = new System.Windows.Forms.TextBox();
+            this.txtBaseMeleeAP = new System.Windows.Forms.TextBox();
+            this.label64 = new System.Windows.Forms.Label();
+            this.label63 = new System.Windows.Forms.Label();
+            this.txtBaseMana = new System.Windows.Forms.TextBox();
+            this.label62 = new System.Windows.Forms.Label();
+            this.txtBaseArmor = new System.Windows.Forms.TextBox();
+            this.label60 = new System.Windows.Forms.Label();
             this.label55 = new System.Windows.Forms.Label();
             this.txtBaseHealthExp1 = new System.Windows.Forms.TextBox();
             this.label56 = new System.Windows.Forms.Label();
             this.txtBaseHealthExp0 = new System.Windows.Forms.TextBox();
-            this.label60 = new System.Windows.Forms.Label();
-            this.txtEquipRange = new System.Windows.Forms.TextBox();
-            this.label61 = new System.Windows.Forms.Label();
-            this.txtBaseArmor = new System.Windows.Forms.TextBox();
-            this.txtBaseMana = new System.Windows.Forms.TextBox();
-            this.label62 = new System.Windows.Forms.Label();
-            this.label63 = new System.Windows.Forms.Label();
-            this.label64 = new System.Windows.Forms.Label();
-            this.txtBaseRangeAP = new System.Windows.Forms.TextBox();
-            this.txtBaseMeleeAP = new System.Windows.Forms.TextBox();
-            this.label65 = new System.Windows.Forms.Label();
-            this.ddlInhabitType = new System.Windows.Forms.ComboBox();
-            this.label66 = new System.Windows.Forms.Label();
-            this.ddlRegenStats = new System.Windows.Forms.ComboBox();
+            this.label59 = new System.Windows.Forms.Label();
+            this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
+            this.label57 = new System.Windows.Forms.Label();
+            this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -202,8 +202,6 @@
             this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -212,6 +210,8 @@
             this.tabPage2.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEntry
@@ -557,6 +557,42 @@
             this.groupBox3.TabIndex = 11;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Creature Editing";
+            // 
+            // ddlRegenStats
+            // 
+            this.ddlRegenStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlRegenStats.FormattingEnabled = true;
+            this.ddlRegenStats.Location = new System.Drawing.Point(298, 275);
+            this.ddlRegenStats.Name = "ddlRegenStats";
+            this.ddlRegenStats.Size = new System.Drawing.Size(122, 21);
+            this.ddlRegenStats.TabIndex = 42;
+            // 
+            // label66
+            // 
+            this.label66.AutoSize = true;
+            this.label66.Location = new System.Drawing.Point(225, 279);
+            this.label66.Name = "label66";
+            this.label66.Size = new System.Drawing.Size(66, 13);
+            this.label66.TabIndex = 41;
+            this.label66.Text = "RegenStats:";
+            // 
+            // ddlInhabitType
+            // 
+            this.ddlInhabitType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.ddlInhabitType.FormattingEnabled = true;
+            this.ddlInhabitType.Location = new System.Drawing.Point(79, 275);
+            this.ddlInhabitType.Name = "ddlInhabitType";
+            this.ddlInhabitType.Size = new System.Drawing.Size(140, 21);
+            this.ddlInhabitType.TabIndex = 40;
+            // 
+            // label65
+            // 
+            this.label65.AutoSize = true;
+            this.label65.Location = new System.Drawing.Point(6, 279);
+            this.label65.Name = "label65";
+            this.label65.Size = new System.Drawing.Size(66, 13);
+            this.label65.TabIndex = 39;
+            this.label65.Text = "InhabitType:";
             // 
             // txtFaction
             // 
@@ -1135,9 +1171,9 @@
             // 
             // groupBox8
             // 
-            this.groupBox8.Controls.Add(this.pictureBox4);
             this.groupBox8.Controls.Add(this.pictureBox5);
-            this.groupBox8.Controls.Add(this.pictureBox6);
+            this.groupBox8.Controls.Add(this.pictureBox7);
+            this.groupBox8.Controls.Add(this.pictureBox4);
             this.groupBox8.Controls.Add(this.label52);
             this.groupBox8.Controls.Add(this.txtMaxMoneyC);
             this.groupBox8.Controls.Add(this.txtMaxMoneyS);
@@ -1165,37 +1201,17 @@
             // pictureBox4
             // 
             this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
-            this.pictureBox4.Location = new System.Drawing.Point(348, 54);
+            this.pictureBox4.Location = new System.Drawing.Point(341, 56);
             this.pictureBox4.Name = "pictureBox4";
             this.pictureBox4.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox4.TabIndex = 55;
             this.pictureBox4.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(289, 54);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox5.TabIndex = 50;
-            this.pictureBox5.TabStop = false;
-            // 
-            // pictureBox6
-            // 
-            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
-            this.pictureBox6.Location = new System.Drawing.Point(230, 54);
-            this.pictureBox6.Name = "pictureBox6";
-            this.pictureBox6.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox6.TabIndex = 49;
-            this.pictureBox6.TabStop = false;
             // 
             // label52
             // 
             this.label52.AutoSize = true;
-            this.label52.Location = new System.Drawing.Point(194, 57);
+            this.label52.Location = new System.Drawing.Point(212, 59);
             this.label52.Name = "label52";
             this.label52.Size = new System.Drawing.Size(30, 13);
             this.label52.TabIndex = 54;
@@ -1203,21 +1219,21 @@
             // 
             // txtMaxMoneyC
             // 
-            this.txtMaxMoneyC.Location = new System.Drawing.Point(371, 54);
+            this.txtMaxMoneyC.Location = new System.Drawing.Point(361, 56);
             this.txtMaxMoneyC.Name = "txtMaxMoneyC";
             this.txtMaxMoneyC.Size = new System.Drawing.Size(30, 20);
             this.txtMaxMoneyC.TabIndex = 53;
             // 
             // txtMaxMoneyS
             // 
-            this.txtMaxMoneyS.Location = new System.Drawing.Point(312, 54);
+            this.txtMaxMoneyS.Location = new System.Drawing.Point(309, 56);
             this.txtMaxMoneyS.Name = "txtMaxMoneyS";
             this.txtMaxMoneyS.Size = new System.Drawing.Size(30, 20);
             this.txtMaxMoneyS.TabIndex = 52;
             // 
             // txtMaxMoneyG
             // 
-            this.txtMaxMoneyG.Location = new System.Drawing.Point(253, 54);
+            this.txtMaxMoneyG.Location = new System.Drawing.Point(259, 56);
             this.txtMaxMoneyG.Name = "txtMaxMoneyG";
             this.txtMaxMoneyG.Size = new System.Drawing.Size(30, 20);
             this.txtMaxMoneyG.TabIndex = 51;
@@ -1225,37 +1241,37 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
-            this.pictureBox3.Location = new System.Drawing.Point(348, 30);
+            this.pictureBox3.Location = new System.Drawing.Point(341, 32);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox3.TabIndex = 48;
             this.pictureBox3.TabStop = false;
             // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(289, 30);
+            this.pictureBox2.Location = new System.Drawing.Point(290, 32);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox2.TabIndex = 32;
             this.pictureBox2.TabStop = false;
             // 
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(230, 30);
+            this.pictureBox1.Location = new System.Drawing.Point(240, 32);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.pictureBox1.TabIndex = 31;
             this.pictureBox1.TabStop = false;
             // 
             // label58
             // 
             this.label58.AutoSize = true;
-            this.label58.Location = new System.Drawing.Point(194, 34);
+            this.label58.Location = new System.Drawing.Point(212, 36);
             this.label58.Name = "label58";
             this.label58.Size = new System.Drawing.Size(27, 13);
             this.label58.TabIndex = 46;
@@ -1263,21 +1279,21 @@
             // 
             // txtMinMoneyC
             // 
-            this.txtMinMoneyC.Location = new System.Drawing.Point(371, 30);
+            this.txtMinMoneyC.Location = new System.Drawing.Point(361, 32);
             this.txtMinMoneyC.Name = "txtMinMoneyC";
             this.txtMinMoneyC.Size = new System.Drawing.Size(30, 20);
             this.txtMinMoneyC.TabIndex = 39;
             // 
             // txtMinMoneyS
             // 
-            this.txtMinMoneyS.Location = new System.Drawing.Point(312, 30);
+            this.txtMinMoneyS.Location = new System.Drawing.Point(309, 32);
             this.txtMinMoneyS.Name = "txtMinMoneyS";
             this.txtMinMoneyS.Size = new System.Drawing.Size(30, 20);
             this.txtMinMoneyS.TabIndex = 37;
             // 
             // txtMinMoneyG
             // 
-            this.txtMinMoneyG.Location = new System.Drawing.Point(253, 30);
+            this.txtMinMoneyG.Location = new System.Drawing.Point(259, 32);
             this.txtMinMoneyG.Name = "txtMinMoneyG";
             this.txtMinMoneyG.Size = new System.Drawing.Size(30, 20);
             this.txtMinMoneyG.TabIndex = 32;
@@ -1545,6 +1561,57 @@
             this.groupBox10.TabStop = false;
             this.groupBox10.Text = "Equipment";
             // 
+            // txtEquipRange
+            // 
+            this.txtEquipRange.Location = new System.Drawing.Point(45, 73);
+            this.txtEquipRange.Name = "txtEquipRange";
+            this.txtEquipRange.ReadOnly = true;
+            this.txtEquipRange.Size = new System.Drawing.Size(151, 20);
+            this.txtEquipRange.TabIndex = 36;
+            // 
+            // label61
+            // 
+            this.label61.AutoSize = true;
+            this.label61.Location = new System.Drawing.Point(4, 76);
+            this.label61.Name = "label61";
+            this.label61.Size = new System.Drawing.Size(42, 13);
+            this.label61.TabIndex = 35;
+            this.label61.Text = "Range:";
+            // 
+            // txtEquipLeft
+            // 
+            this.txtEquipLeft.Location = new System.Drawing.Point(45, 54);
+            this.txtEquipLeft.Name = "txtEquipLeft";
+            this.txtEquipLeft.ReadOnly = true;
+            this.txtEquipLeft.Size = new System.Drawing.Size(151, 20);
+            this.txtEquipLeft.TabIndex = 34;
+            // 
+            // label54
+            // 
+            this.label54.AutoSize = true;
+            this.label54.Location = new System.Drawing.Point(4, 57);
+            this.label54.Name = "label54";
+            this.label54.Size = new System.Drawing.Size(28, 13);
+            this.label54.TabIndex = 33;
+            this.label54.Text = "Left:";
+            // 
+            // label53
+            // 
+            this.label53.AutoSize = true;
+            this.label53.Location = new System.Drawing.Point(4, 38);
+            this.label53.Name = "label53";
+            this.label53.Size = new System.Drawing.Size(35, 13);
+            this.label53.TabIndex = 32;
+            this.label53.Text = "Right:";
+            // 
+            // txtEquipRight
+            // 
+            this.txtEquipRight.Location = new System.Drawing.Point(45, 35);
+            this.txtEquipRight.Name = "txtEquipRight";
+            this.txtEquipRight.ReadOnly = true;
+            this.txtEquipRight.Size = new System.Drawing.Size(151, 20);
+            this.txtEquipRight.TabIndex = 31;
+            // 
             // label51
             // 
             this.label51.AutoSize = true;
@@ -1561,40 +1628,6 @@
             this.txtEquipmentTemplateId.Size = new System.Drawing.Size(57, 20);
             this.txtEquipmentTemplateId.TabIndex = 27;
             this.txtEquipmentTemplateId.TextChanged += new System.EventHandler(this.txtEquipmentTemplateId_TextChanged);
-            // 
-            // txtEquipRight
-            // 
-            this.txtEquipRight.Location = new System.Drawing.Point(45, 35);
-            this.txtEquipRight.Name = "txtEquipRight";
-            this.txtEquipRight.ReadOnly = true;
-            this.txtEquipRight.Size = new System.Drawing.Size(151, 20);
-            this.txtEquipRight.TabIndex = 31;
-            // 
-            // label53
-            // 
-            this.label53.AutoSize = true;
-            this.label53.Location = new System.Drawing.Point(4, 38);
-            this.label53.Name = "label53";
-            this.label53.Size = new System.Drawing.Size(35, 13);
-            this.label53.TabIndex = 32;
-            this.label53.Text = "Right:";
-            // 
-            // label54
-            // 
-            this.label54.AutoSize = true;
-            this.label54.Location = new System.Drawing.Point(4, 57);
-            this.label54.Name = "label54";
-            this.label54.Size = new System.Drawing.Size(28, 13);
-            this.label54.TabIndex = 33;
-            this.label54.Text = "Left:";
-            // 
-            // txtEquipLeft
-            // 
-            this.txtEquipLeft.Location = new System.Drawing.Point(45, 54);
-            this.txtEquipLeft.Name = "txtEquipLeft";
-            this.txtEquipLeft.ReadOnly = true;
-            this.txtEquipLeft.Size = new System.Drawing.Size(151, 20);
-            this.txtEquipLeft.TabIndex = 34;
             // 
             // groupBox7
             // 
@@ -1621,39 +1654,73 @@
             this.groupBox7.TabStop = false;
             this.groupBox7.Text = "Class Level Stats";
             // 
-            // txtBaseDamageExp1
+            // txtBaseRangeAP
             // 
-            this.txtBaseDamageExp1.Location = new System.Drawing.Point(77, 39);
-            this.txtBaseDamageExp1.Name = "txtBaseDamageExp1";
-            this.txtBaseDamageExp1.ReadOnly = true;
-            this.txtBaseDamageExp1.Size = new System.Drawing.Size(46, 20);
-            this.txtBaseDamageExp1.TabIndex = 31;
+            this.txtBaseRangeAP.Location = new System.Drawing.Point(181, 76);
+            this.txtBaseRangeAP.Name = "txtBaseRangeAP";
+            this.txtBaseRangeAP.ReadOnly = true;
+            this.txtBaseRangeAP.Size = new System.Drawing.Size(37, 20);
+            this.txtBaseRangeAP.TabIndex = 47;
             // 
-            // label57
+            // txtBaseMeleeAP
             // 
-            this.label57.AutoSize = true;
-            this.label57.Location = new System.Drawing.Point(3, 22);
-            this.label57.Name = "label57";
-            this.label57.Size = new System.Drawing.Size(74, 13);
-            this.label57.TabIndex = 30;
-            this.label57.Text = "DamageExp0:";
+            this.txtBaseMeleeAP.Location = new System.Drawing.Point(181, 57);
+            this.txtBaseMeleeAP.Name = "txtBaseMeleeAP";
+            this.txtBaseMeleeAP.ReadOnly = true;
+            this.txtBaseMeleeAP.Size = new System.Drawing.Size(37, 20);
+            this.txtBaseMeleeAP.TabIndex = 46;
             // 
-            // txtBaseDamageExp0
+            // label64
             // 
-            this.txtBaseDamageExp0.Location = new System.Drawing.Point(77, 20);
-            this.txtBaseDamageExp0.Name = "txtBaseDamageExp0";
-            this.txtBaseDamageExp0.ReadOnly = true;
-            this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
-            this.txtBaseDamageExp0.TabIndex = 27;
+            this.label64.AutoSize = true;
+            this.label64.Location = new System.Drawing.Point(125, 82);
+            this.label64.Name = "label64";
+            this.label64.Size = new System.Drawing.Size(56, 13);
+            this.label64.TabIndex = 45;
+            this.label64.Text = "RangeAP:";
             // 
-            // label59
+            // label63
             // 
-            this.label59.AutoSize = true;
-            this.label59.Location = new System.Drawing.Point(3, 41);
-            this.label59.Name = "label59";
-            this.label59.Size = new System.Drawing.Size(74, 13);
-            this.label59.TabIndex = 35;
-            this.label59.Text = "DamageExp1:";
+            this.label63.AutoSize = true;
+            this.label63.Location = new System.Drawing.Point(125, 63);
+            this.label63.Name = "label63";
+            this.label63.Size = new System.Drawing.Size(53, 13);
+            this.label63.TabIndex = 44;
+            this.label63.Text = "MeleeAP:";
+            // 
+            // txtBaseMana
+            // 
+            this.txtBaseMana.Location = new System.Drawing.Point(181, 38);
+            this.txtBaseMana.Name = "txtBaseMana";
+            this.txtBaseMana.ReadOnly = true;
+            this.txtBaseMana.Size = new System.Drawing.Size(37, 20);
+            this.txtBaseMana.TabIndex = 43;
+            // 
+            // label62
+            // 
+            this.label62.AutoSize = true;
+            this.label62.Location = new System.Drawing.Point(124, 43);
+            this.label62.Name = "label62";
+            this.label62.Size = new System.Drawing.Size(37, 13);
+            this.label62.TabIndex = 42;
+            this.label62.Text = "Mana:";
+            // 
+            // txtBaseArmor
+            // 
+            this.txtBaseArmor.Location = new System.Drawing.Point(181, 19);
+            this.txtBaseArmor.Name = "txtBaseArmor";
+            this.txtBaseArmor.ReadOnly = true;
+            this.txtBaseArmor.Size = new System.Drawing.Size(37, 20);
+            this.txtBaseArmor.TabIndex = 41;
+            // 
+            // label60
+            // 
+            this.label60.AutoSize = true;
+            this.label60.Location = new System.Drawing.Point(124, 24);
+            this.label60.Name = "label60";
+            this.label60.Size = new System.Drawing.Size(37, 13);
+            this.label60.TabIndex = 40;
+            this.label60.Text = "Armor:";
             // 
             // label55
             // 
@@ -1689,126 +1756,59 @@
             this.txtBaseHealthExp0.Size = new System.Drawing.Size(46, 20);
             this.txtBaseHealthExp0.TabIndex = 36;
             // 
-            // label60
+            // label59
             // 
-            this.label60.AutoSize = true;
-            this.label60.Location = new System.Drawing.Point(124, 24);
-            this.label60.Name = "label60";
-            this.label60.Size = new System.Drawing.Size(37, 13);
-            this.label60.TabIndex = 40;
-            this.label60.Text = "Armor:";
+            this.label59.AutoSize = true;
+            this.label59.Location = new System.Drawing.Point(3, 41);
+            this.label59.Name = "label59";
+            this.label59.Size = new System.Drawing.Size(74, 13);
+            this.label59.TabIndex = 35;
+            this.label59.Text = "DamageExp1:";
             // 
-            // txtEquipRange
+            // txtBaseDamageExp1
             // 
-            this.txtEquipRange.Location = new System.Drawing.Point(45, 73);
-            this.txtEquipRange.Name = "txtEquipRange";
-            this.txtEquipRange.ReadOnly = true;
-            this.txtEquipRange.Size = new System.Drawing.Size(151, 20);
-            this.txtEquipRange.TabIndex = 36;
+            this.txtBaseDamageExp1.Location = new System.Drawing.Point(77, 39);
+            this.txtBaseDamageExp1.Name = "txtBaseDamageExp1";
+            this.txtBaseDamageExp1.ReadOnly = true;
+            this.txtBaseDamageExp1.Size = new System.Drawing.Size(46, 20);
+            this.txtBaseDamageExp1.TabIndex = 31;
             // 
-            // label61
+            // label57
             // 
-            this.label61.AutoSize = true;
-            this.label61.Location = new System.Drawing.Point(4, 76);
-            this.label61.Name = "label61";
-            this.label61.Size = new System.Drawing.Size(42, 13);
-            this.label61.TabIndex = 35;
-            this.label61.Text = "Range:";
+            this.label57.AutoSize = true;
+            this.label57.Location = new System.Drawing.Point(3, 22);
+            this.label57.Name = "label57";
+            this.label57.Size = new System.Drawing.Size(74, 13);
+            this.label57.TabIndex = 30;
+            this.label57.Text = "DamageExp0:";
             // 
-            // txtBaseArmor
+            // txtBaseDamageExp0
             // 
-            this.txtBaseArmor.Location = new System.Drawing.Point(181, 19);
-            this.txtBaseArmor.Name = "txtBaseArmor";
-            this.txtBaseArmor.ReadOnly = true;
-            this.txtBaseArmor.Size = new System.Drawing.Size(37, 20);
-            this.txtBaseArmor.TabIndex = 41;
+            this.txtBaseDamageExp0.Location = new System.Drawing.Point(77, 20);
+            this.txtBaseDamageExp0.Name = "txtBaseDamageExp0";
+            this.txtBaseDamageExp0.ReadOnly = true;
+            this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
+            this.txtBaseDamageExp0.TabIndex = 27;
             // 
-            // txtBaseMana
+            // pictureBox7
             // 
-            this.txtBaseMana.Location = new System.Drawing.Point(181, 38);
-            this.txtBaseMana.Name = "txtBaseMana";
-            this.txtBaseMana.ReadOnly = true;
-            this.txtBaseMana.Size = new System.Drawing.Size(37, 20);
-            this.txtBaseMana.TabIndex = 43;
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(240, 56);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox7.TabIndex = 56;
+            this.pictureBox7.TabStop = false;
             // 
-            // label62
+            // pictureBox5
             // 
-            this.label62.AutoSize = true;
-            this.label62.Location = new System.Drawing.Point(124, 43);
-            this.label62.Name = "label62";
-            this.label62.Size = new System.Drawing.Size(37, 13);
-            this.label62.TabIndex = 42;
-            this.label62.Text = "Mana:";
-            // 
-            // label63
-            // 
-            this.label63.AutoSize = true;
-            this.label63.Location = new System.Drawing.Point(125, 63);
-            this.label63.Name = "label63";
-            this.label63.Size = new System.Drawing.Size(53, 13);
-            this.label63.TabIndex = 44;
-            this.label63.Text = "MeleeAP:";
-            // 
-            // label64
-            // 
-            this.label64.AutoSize = true;
-            this.label64.Location = new System.Drawing.Point(125, 82);
-            this.label64.Name = "label64";
-            this.label64.Size = new System.Drawing.Size(56, 13);
-            this.label64.TabIndex = 45;
-            this.label64.Text = "RangeAP:";
-            // 
-            // txtBaseRangeAP
-            // 
-            this.txtBaseRangeAP.Location = new System.Drawing.Point(181, 76);
-            this.txtBaseRangeAP.Name = "txtBaseRangeAP";
-            this.txtBaseRangeAP.ReadOnly = true;
-            this.txtBaseRangeAP.Size = new System.Drawing.Size(37, 20);
-            this.txtBaseRangeAP.TabIndex = 47;
-            // 
-            // txtBaseMeleeAP
-            // 
-            this.txtBaseMeleeAP.Location = new System.Drawing.Point(181, 57);
-            this.txtBaseMeleeAP.Name = "txtBaseMeleeAP";
-            this.txtBaseMeleeAP.ReadOnly = true;
-            this.txtBaseMeleeAP.Size = new System.Drawing.Size(37, 20);
-            this.txtBaseMeleeAP.TabIndex = 46;
-            // 
-            // label65
-            // 
-            this.label65.AutoSize = true;
-            this.label65.Location = new System.Drawing.Point(6, 279);
-            this.label65.Name = "label65";
-            this.label65.Size = new System.Drawing.Size(66, 13);
-            this.label65.TabIndex = 39;
-            this.label65.Text = "InhabitType:";
-            // 
-            // ddlInhabitType
-            // 
-            this.ddlInhabitType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlInhabitType.FormattingEnabled = true;
-            this.ddlInhabitType.Location = new System.Drawing.Point(79, 275);
-            this.ddlInhabitType.Name = "ddlInhabitType";
-            this.ddlInhabitType.Size = new System.Drawing.Size(140, 21);
-            this.ddlInhabitType.TabIndex = 40;
-            // 
-            // label66
-            // 
-            this.label66.AutoSize = true;
-            this.label66.Location = new System.Drawing.Point(225, 279);
-            this.label66.Name = "label66";
-            this.label66.Size = new System.Drawing.Size(66, 13);
-            this.label66.TabIndex = 41;
-            this.label66.Text = "RegenStats:";
-            // 
-            // ddlRegenStats
-            // 
-            this.ddlRegenStats.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.ddlRegenStats.FormattingEnabled = true;
-            this.ddlRegenStats.Location = new System.Drawing.Point(298, 275);
-            this.ddlRegenStats.Name = "ddlRegenStats";
-            this.ddlRegenStats.Size = new System.Drawing.Size(122, 21);
-            this.ddlRegenStats.TabIndex = 42;
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(290, 56);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox5.TabIndex = 57;
+            this.pictureBox5.TabStop = false;
             // 
             // frmMain
             // 
@@ -1846,8 +1846,6 @@
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -1859,6 +1857,8 @@
             this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -1995,8 +1995,6 @@
         private System.Windows.Forms.TextBox txtMinMoneyC;
         private System.Windows.Forms.TextBox txtMinMoneyS;
         private System.Windows.Forms.PictureBox pictureBox4;
-        private System.Windows.Forms.PictureBox pictureBox5;
-        private System.Windows.Forms.PictureBox pictureBox6;
         private System.Windows.Forms.Label label52;
         private System.Windows.Forms.TextBox txtMaxMoneyC;
         private System.Windows.Forms.TextBox txtMaxMoneyS;
@@ -2031,6 +2029,8 @@
         private System.Windows.Forms.Label label66;
         private System.Windows.Forms.ComboBox ddlInhabitType;
         private System.Windows.Forms.Label label65;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox7;
     }
 }
 
