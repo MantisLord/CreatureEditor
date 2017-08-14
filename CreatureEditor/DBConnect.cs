@@ -98,50 +98,35 @@ namespace CreatureEditor
         private string database;
         private string uid;
         private string password;
+        private string port;
 
-        public DBConnect()
+        public DBConnect(string serv, string db, string u, string pw, string pt)
         {
+            server = serv;
+            database = db;
+            uid = u;
+            password = pw;
+            port = pt;
+
             Initialize();
         }
 
         private void Initialize()
         {
-            server = "localhost";
-            database = "voamangos";
-            uid = "root";
-            password = "password";
-
-            string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
-
+            string connectionString = "SERVER=" + server + ";" + "DATABASE=" + database + ";" + "PORT=" + port + ";" + "UID=" + uid + ";" + "PASSWORD=" + password + ";";
             connection = new MySqlConnection(connectionString);
         }
 
         private bool OpenConnection()
         {
-            try
-            {
-                connection.Open();
-                return true;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
+            connection.Open();
+            return true;
         }
 
         private bool CloseConnection()
         {
-            try
-            {
-                connection.Close();
-                return true;
-            }
-            catch (MySqlException ex)
-            {
-                MessageBox.Show(ex.Message);
-                return false;
-            }
+            connection.Close();
+            return true;
         }
 
         public List<EquipmentTemplate> GetEquipment()

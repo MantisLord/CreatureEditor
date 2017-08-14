@@ -130,6 +130,8 @@
             this.txtSchoolImmuneMask = new System.Windows.Forms.TextBox();
             this.clbSchoolImmune = new System.Windows.Forms.CheckedListBox();
             this.groupBox8 = new System.Windows.Forms.GroupBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
             this.pictureBox4 = new System.Windows.Forms.PictureBox();
             this.label52 = new System.Windows.Forms.Label();
             this.txtMaxMoneyC = new System.Windows.Forms.TextBox();
@@ -192,8 +194,6 @@
             this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
             this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
-            this.pictureBox7 = new System.Windows.Forms.PictureBox();
-            this.pictureBox5 = new System.Windows.Forms.PictureBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -201,6 +201,8 @@
             this.groupBox5.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
@@ -210,8 +212,6 @@
             this.tabPage2.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
             this.SuspendLayout();
             // 
             // txtEntry
@@ -1114,6 +1114,7 @@
             this.txtMechanicImmuneMask.Name = "txtMechanicImmuneMask";
             this.txtMechanicImmuneMask.Size = new System.Drawing.Size(103, 20);
             this.txtMechanicImmuneMask.TabIndex = 18;
+            this.txtMechanicImmuneMask.TextChanged += new System.EventHandler(this.txtMechanicImmuneMask_TextChanged);
             // 
             // groupBox6
             // 
@@ -1197,6 +1198,26 @@
             this.groupBox8.TabIndex = 26;
             this.groupBox8.TabStop = false;
             this.groupBox8.Text = "Loot";
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(290, 56);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox5.TabIndex = 57;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(240, 56);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(17, 17);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
+            this.pictureBox7.TabIndex = 56;
+            this.pictureBox7.TabStop = false;
             // 
             // pictureBox4
             // 
@@ -1416,6 +1437,7 @@
             this.txtDynamicFlagsMask.Name = "txtDynamicFlagsMask";
             this.txtDynamicFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtDynamicFlagsMask.TabIndex = 37;
+            this.txtDynamicFlagsMask.TextChanged += new System.EventHandler(this.txtDynamicFlagsMask_TextChanged);
             // 
             // label46
             // 
@@ -1446,6 +1468,7 @@
             this.txtUnitFlagsMask.Name = "txtUnitFlagsMask";
             this.txtUnitFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtUnitFlagsMask.TabIndex = 34;
+            this.txtUnitFlagsMask.TextChanged += new System.EventHandler(this.txtUnitFlagsMask_TextChanged);
             // 
             // label45
             // 
@@ -1476,6 +1499,7 @@
             this.txtCreatureTypeFlagsMask.Name = "txtCreatureTypeFlagsMask";
             this.txtCreatureTypeFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtCreatureTypeFlagsMask.TabIndex = 31;
+            this.txtCreatureTypeFlagsMask.TextChanged += new System.EventHandler(this.txtCreatureTypeFlagsMask_TextChanged);
             // 
             // label43
             // 
@@ -1511,6 +1535,7 @@
             this.txtNPCFlagsMask.Name = "txtNPCFlagsMask";
             this.txtNPCFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtNPCFlagsMask.TabIndex = 26;
+            this.txtNPCFlagsMask.TextChanged += new System.EventHandler(this.txtNPCFlagsMask_TextChanged);
             // 
             // clbNPCFlags
             // 
@@ -1543,6 +1568,7 @@
             this.txtExtraFlagsMask.Name = "txtExtraFlagsMask";
             this.txtExtraFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtExtraFlagsMask.TabIndex = 27;
+            this.txtExtraFlagsMask.TextChanged += new System.EventHandler(this.txtExtraFlagsMask_TextChanged);
             // 
             // groupBox10
             // 
@@ -1790,26 +1816,6 @@
             this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
             this.txtBaseDamageExp0.TabIndex = 27;
             // 
-            // pictureBox7
-            // 
-            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
-            this.pictureBox7.Location = new System.Drawing.Point(240, 56);
-            this.pictureBox7.Name = "pictureBox7";
-            this.pictureBox7.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox7.TabIndex = 56;
-            this.pictureBox7.TabStop = false;
-            // 
-            // pictureBox5
-            // 
-            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
-            this.pictureBox5.Location = new System.Drawing.Point(290, 56);
-            this.pictureBox5.Name = "pictureBox5";
-            this.pictureBox5.Size = new System.Drawing.Size(17, 17);
-            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.pictureBox5.TabIndex = 57;
-            this.pictureBox5.TabStop = false;
-            // 
             // frmMain
             // 
             this.AcceptButton = this.btnGo;
@@ -1845,6 +1851,8 @@
             this.groupBox6.PerformLayout();
             this.groupBox8.ResumeLayout(false);
             this.groupBox8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
@@ -1857,8 +1865,6 @@
             this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
             this.groupBox7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 

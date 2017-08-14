@@ -250,8 +250,8 @@ namespace CreatureEditor
             Preparation         = 0x00000020,           // don't take reagents for spells with SPELL_ATTR_EX5_NO_REAGENT_WHILE_PREP
             Unk6                = 0x00000040,
             NotAttackable1      = 0x00000080,           // ?? (UNIT_FLAG_PVP_ATTACKABLE | UNIT_FLAG_NOT_ATTACKABLE_1) is NON_PVP_ATTACKABLE - blue color target
-            OOCNotAttackable    = 0x00000100,           // 2.0.8 - (OOC Out Of Combat) Can not be attacked when not in combat. Removed if unit for some reason enter combat (flag probably removed for the attacked and it's party/group only)
-            Passive             = 0x00000200,           // makes you unable to attack everything. Almost identical to our "civilian"-term. Will ignore it's surroundings and not engage in combat unless "called upon" or engaged by another unit.
+            ImmuneToPlayer      = 0x00000100,           // 2.0.8 - (OOC Out Of Combat) Can not be attacked when not in combat. Removed if unit for some reason enter combat (flag probably removed for the attacked and it's party/group only)
+            ImmuneToNpc         = 0x00000200,           // makes you unable to attack everything. Almost identical to our "civilian"-term. Will ignore it's surroundings and not engage in combat unless "called upon" or engaged by another unit.
             Looting             = 0x00000400,           // loot animation
             PetInCombat         = 0x00000800,           // in combat?, 2.0.8 Possibly Unkillable
             PvP                 = 0x00001000,
@@ -304,10 +304,9 @@ namespace CreatureEditor
         public frmMain()
         {
             InitializeComponent();
-            load();
         }
 
-        private void load()
+        public void load(string serv, string db, string u, string pw, string pt)
         {
             ddlClass.Items.AddRange(Enum.GetNames(typeof(UnitClass)));
             ddlDamageSchool.Items.AddRange(Enum.GetNames(typeof(DamageSchool)));
@@ -319,7 +318,7 @@ namespace CreatureEditor
             ddlInhabitType.Items.AddRange(Enum.GetNames(typeof(InhabitType)));
             ddlRegenStats.Items.AddRange(Enum.GetNames(typeof(RegenerateStats)));
 
-            DBConnect connect = new DBConnect();
+            DBConnect connect = new DBConnect(serv, db, u, pw, pt);
             creatures = connect.GetCreatures();
             equipment = connect.GetEquipment();
             basestats = connect.GetClassLevelStats();
@@ -879,6 +878,66 @@ namespace CreatureEditor
         {
             activeCreature.EquipmentTemplateId = txtEquipmentTemplateId.Text;
             updateEquipment();
+        }
+
+        private void txtUnitFlagsMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeCreature.UnitFlags = txtUnitFlagsMask.Text;
+                populateFlagValues(typeof(UnitFlags), Convert.ToInt32(activeCreature.UnitFlags), clbUnitFlags, txtUnitFlagsMask);
+            }
+            catch { }
+        }
+
+        private void txtMechanicImmuneMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeCreature.MechanicImmuneMask = txtMechanicImmuneMask.Text;
+                populateFlagValues(typeof(MechanicImmunities), Convert.ToInt32(activeCreature.MechanicImmuneMask), clbMechanicImmune, txtMechanicImmuneMask);
+            }
+            catch { }
+        }
+
+        private void txtExtraFlagsMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            { 
+                activeCreature.ExtraFlags = txtExtraFlagsMask.Text;
+                populateFlagValues(typeof(CreatureExtraFlags), Convert.ToInt32(activeCreature.ExtraFlags), clbExtraFlags, txtExtraFlagsMask);
+            }
+            catch { }
+        }
+
+        private void txtNPCFlagsMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeCreature.NpcFlags = txtNPCFlagsMask.Text;
+                populateFlagValues(typeof(NPCFlags), Convert.ToInt32(activeCreature.NpcFlags), clbNPCFlags, txtNPCFlagsMask);
+            }
+            catch { }
+        }
+
+        private void txtCreatureTypeFlagsMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeCreature.CreatureTypeFlags = txtCreatureTypeFlagsMask.Text;
+                populateFlagValues(typeof(CreatureTypeFlags), Convert.ToInt32(activeCreature.CreatureTypeFlags), clbCreatureTypeFlags, txtCreatureTypeFlagsMask);
+            }
+            catch { }
+        }
+
+        private void txtDynamicFlagsMask_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                activeCreature.DynamicFlags = txtDynamicFlagsMask.Text;
+                populateFlagValues(typeof(UnitDynFlags), Convert.ToInt32(activeCreature.DynamicFlags), clbDynamicFlags, txtDynamicFlagsMask);
+            }
+            catch { }
         }
     }
 }
