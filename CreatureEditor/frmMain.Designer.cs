@@ -168,6 +168,15 @@
             this.clbNPCFlags = new System.Windows.Forms.CheckedListBox();
             this.clbExtraFlags = new System.Windows.Forms.CheckedListBox();
             this.txtExtraFlagsMask = new System.Windows.Forms.TextBox();
+            this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.cbSpells = new System.Windows.Forms.ComboBox();
+            this.label71 = new System.Windows.Forms.Label();
+            this.cbQuest = new System.Windows.Forms.ComboBox();
+            this.label69 = new System.Windows.Forms.Label();
+            this.cbGameobject = new System.Windows.Forms.ComboBox();
+            this.label68 = new System.Windows.Forms.Label();
+            this.cbItem = new System.Windows.Forms.ComboBox();
+            this.label67 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.txtEquipRange = new System.Windows.Forms.TextBox();
             this.label61 = new System.Windows.Forms.Label();
@@ -194,6 +203,10 @@
             this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
             this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
+            this.txtItemEntry = new System.Windows.Forms.TextBox();
+            this.txtObjectEntry = new System.Windows.Forms.TextBox();
+            this.txtQuestEntry = new System.Windows.Forms.TextBox();
+            this.txtSpellId = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -210,6 +223,7 @@
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
+            this.tabPage3.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox7.SuspendLayout();
             this.SuspendLayout();
@@ -220,6 +234,7 @@
             this.txtEntry.Name = "txtEntry";
             this.txtEntry.Size = new System.Drawing.Size(55, 20);
             this.txtEntry.TabIndex = 1;
+            this.txtEntry.TextChanged += new System.EventHandler(this.txtEntry_TextChanged);
             // 
             // label1
             // 
@@ -1371,6 +1386,7 @@
             // 
             this.tabControl1.Controls.Add(this.tabPage1);
             this.tabControl1.Controls.Add(this.tabPage2);
+            this.tabControl1.Controls.Add(this.tabPage3);
             this.tabControl1.Location = new System.Drawing.Point(444, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
@@ -1569,6 +1585,117 @@
             this.txtExtraFlagsMask.Size = new System.Drawing.Size(75, 20);
             this.txtExtraFlagsMask.TabIndex = 27;
             this.txtExtraFlagsMask.TextChanged += new System.EventHandler(this.txtExtraFlagsMask_TextChanged);
+            // 
+            // tabPage3
+            // 
+            this.tabPage3.Controls.Add(this.txtSpellId);
+            this.tabPage3.Controls.Add(this.txtQuestEntry);
+            this.tabPage3.Controls.Add(this.txtObjectEntry);
+            this.tabPage3.Controls.Add(this.txtItemEntry);
+            this.tabPage3.Controls.Add(this.cbSpells);
+            this.tabPage3.Controls.Add(this.label71);
+            this.tabPage3.Controls.Add(this.cbQuest);
+            this.tabPage3.Controls.Add(this.label69);
+            this.tabPage3.Controls.Add(this.cbGameobject);
+            this.tabPage3.Controls.Add(this.label68);
+            this.tabPage3.Controls.Add(this.cbItem);
+            this.tabPage3.Controls.Add(this.label67);
+            this.tabPage3.Location = new System.Drawing.Point(4, 22);
+            this.tabPage3.Name = "tabPage3";
+            this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
+            this.tabPage3.Size = new System.Drawing.Size(540, 522);
+            this.tabPage3.TabIndex = 2;
+            this.tabPage3.Text = "Tools";
+            this.tabPage3.UseVisualStyleBackColor = true;
+            this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // cbSpells
+            // 
+            this.cbSpells.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbSpells.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbSpells.DisplayMember = "SpellName";
+            this.cbSpells.FormattingEnabled = true;
+            this.cbSpells.Location = new System.Drawing.Point(134, 317);
+            this.cbSpells.Name = "cbSpells";
+            this.cbSpells.Size = new System.Drawing.Size(245, 21);
+            this.cbSpells.TabIndex = 25;
+            this.cbSpells.ValueMember = "Id";
+            this.cbSpells.SelectedIndexChanged += new System.EventHandler(this.cbSpells_SelectedIndexChanged);
+            // 
+            // label71
+            // 
+            this.label71.AutoSize = true;
+            this.label71.Location = new System.Drawing.Point(28, 320);
+            this.label71.Name = "label71";
+            this.label71.Size = new System.Drawing.Size(38, 13);
+            this.label71.TabIndex = 24;
+            this.label71.Text = "Spells:";
+            // 
+            // cbQuest
+            // 
+            this.cbQuest.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbQuest.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbQuest.DisplayMember = "Title";
+            this.cbQuest.FormattingEnabled = true;
+            this.cbQuest.Location = new System.Drawing.Point(134, 231);
+            this.cbQuest.Name = "cbQuest";
+            this.cbQuest.Size = new System.Drawing.Size(245, 21);
+            this.cbQuest.TabIndex = 20;
+            this.cbQuest.ValueMember = "Entry";
+            this.cbQuest.SelectedIndexChanged += new System.EventHandler(this.cbQuest_SelectedIndexChanged);
+            // 
+            // label69
+            // 
+            this.label69.AutoSize = true;
+            this.label69.Location = new System.Drawing.Point(28, 234);
+            this.label69.Name = "label69";
+            this.label69.Size = new System.Drawing.Size(43, 13);
+            this.label69.TabIndex = 19;
+            this.label69.Text = "Quests:";
+            // 
+            // cbGameobject
+            // 
+            this.cbGameobject.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbGameobject.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbGameobject.DisplayMember = "Name";
+            this.cbGameobject.FormattingEnabled = true;
+            this.cbGameobject.Location = new System.Drawing.Point(134, 127);
+            this.cbGameobject.Name = "cbGameobject";
+            this.cbGameobject.Size = new System.Drawing.Size(245, 21);
+            this.cbGameobject.TabIndex = 18;
+            this.cbGameobject.ValueMember = "Entry";
+            this.cbGameobject.SelectedIndexChanged += new System.EventHandler(this.cbGameobject_SelectedIndexChanged);
+            // 
+            // label68
+            // 
+            this.label68.AutoSize = true;
+            this.label68.Location = new System.Drawing.Point(28, 132);
+            this.label68.Name = "label68";
+            this.label68.Size = new System.Drawing.Size(72, 13);
+            this.label68.TabIndex = 17;
+            this.label68.Text = "Gameobjects:";
+            // 
+            // cbItem
+            // 
+            this.cbItem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cbItem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cbItem.DisplayMember = "Name";
+            this.cbItem.FormattingEnabled = true;
+            this.cbItem.Location = new System.Drawing.Point(134, 30);
+            this.cbItem.Name = "cbItem";
+            this.cbItem.Size = new System.Drawing.Size(245, 21);
+            this.cbItem.TabIndex = 16;
+            this.cbItem.ValueMember = "Entry";
+            this.cbItem.SelectedIndexChanged += new System.EventHandler(this.cbItem_SelectedIndexChanged);
+            // 
+            // label67
+            // 
+            this.label67.AutoSize = true;
+            this.label67.Location = new System.Drawing.Point(28, 34);
+            this.label67.Name = "label67";
+            this.label67.Size = new System.Drawing.Size(35, 13);
+            this.label67.TabIndex = 0;
+            this.label67.Text = "Items:";
             // 
             // groupBox10
             // 
@@ -1816,6 +1943,38 @@
             this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
             this.txtBaseDamageExp0.TabIndex = 27;
             // 
+            // txtItemEntry
+            // 
+            this.txtItemEntry.Location = new System.Drawing.Point(398, 30);
+            this.txtItemEntry.Name = "txtItemEntry";
+            this.txtItemEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtItemEntry.TabIndex = 26;
+            this.txtItemEntry.TextChanged += new System.EventHandler(this.txtItemEntry_TextChanged);
+            // 
+            // txtObjectEntry
+            // 
+            this.txtObjectEntry.Location = new System.Drawing.Point(398, 125);
+            this.txtObjectEntry.Name = "txtObjectEntry";
+            this.txtObjectEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtObjectEntry.TabIndex = 27;
+            this.txtObjectEntry.TextChanged += new System.EventHandler(this.txtObjectEntry_TextChanged);
+            // 
+            // txtQuestEntry
+            // 
+            this.txtQuestEntry.Location = new System.Drawing.Point(398, 231);
+            this.txtQuestEntry.Name = "txtQuestEntry";
+            this.txtQuestEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtQuestEntry.TabIndex = 28;
+            this.txtQuestEntry.TextChanged += new System.EventHandler(this.txtQuestEntry_TextChanged);
+            // 
+            // txtSpellId
+            // 
+            this.txtSpellId.Location = new System.Drawing.Point(398, 317);
+            this.txtSpellId.Name = "txtSpellId";
+            this.txtSpellId.Size = new System.Drawing.Size(100, 20);
+            this.txtSpellId.TabIndex = 29;
+            this.txtSpellId.TextChanged += new System.EventHandler(this.txtSpellId_TextChanged);
+            // 
             // frmMain
             // 
             this.AcceptButton = this.btnGo;
@@ -1861,6 +2020,8 @@
             this.tabPage1.ResumeLayout(false);
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            this.tabPage3.ResumeLayout(false);
+            this.tabPage3.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
             this.groupBox7.ResumeLayout(false);
@@ -2037,6 +2198,19 @@
         private System.Windows.Forms.Label label65;
         private System.Windows.Forms.PictureBox pictureBox5;
         private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.TabPage tabPage3;
+        private System.Windows.Forms.ComboBox cbQuest;
+        private System.Windows.Forms.Label label69;
+        private System.Windows.Forms.ComboBox cbGameobject;
+        private System.Windows.Forms.Label label68;
+        private System.Windows.Forms.ComboBox cbItem;
+        private System.Windows.Forms.Label label67;
+        private System.Windows.Forms.ComboBox cbSpells;
+        private System.Windows.Forms.Label label71;
+        private System.Windows.Forms.TextBox txtSpellId;
+        private System.Windows.Forms.TextBox txtQuestEntry;
+        private System.Windows.Forms.TextBox txtObjectEntry;
+        private System.Windows.Forms.TextBox txtItemEntry;
     }
 }
 

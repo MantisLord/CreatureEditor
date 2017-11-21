@@ -5,6 +5,46 @@ using System.Windows.Forms;
 
 namespace CreatureEditor
 {
+    class Gameobject : ICloneable
+    {
+        public string Entry { get; set; }
+        public string Name { get; set; }
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+
+    }
+
+    class Quest : ICloneable
+    {
+        public string Entry { get; set; }
+        public string Title { get; set; }
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+    class Item : ICloneable
+    {
+        public string Entry { get; set; }
+        public string Name { get; set; }
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
+    class Spell : ICloneable
+    {
+        public string Id { get; set; }
+        public string SpellName { get; set; }
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
     class Creature : ICloneable
     {
         // Creature Template
@@ -181,7 +221,7 @@ namespace CreatureEditor
                     ClassLevelStatistic cls = new ClassLevelStatistic()
                     {
                         Class = dataReader["Class"].ToString(),
-                        Level = dataReader["Level"].ToString(), 
+                        Level = dataReader["Level"].ToString(),
                         BaseHealthExp0 = dataReader["BaseHealthExp0"].ToString(),
                         BaseHealthExp1 = dataReader["BaseHealthExp1"].ToString(),
                         BaseDamageExp0 = dataReader["BaseDamageExp0"].ToString(),
@@ -199,6 +239,108 @@ namespace CreatureEditor
             }
 
             return classlvlstats;
+        }
+
+        public List<Gameobject> GetObjects()
+        {
+            string query = "SELECT * FROM gameobject_template";
+
+            List<Gameobject> objects = new List<Gameobject>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    Gameobject g = new Gameobject()
+                    {
+                        Entry = dataReader["Entry"].ToString(),
+                        Name = dataReader["Name"].ToString()
+                    };
+                    objects.Add(g);
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+            return objects;
+        }
+
+        public List<Quest> GetQuests()
+        {
+            string query = "SELECT * FROM quest_template";
+
+            List<Quest> quests = new List<Quest>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    Quest q = new Quest()
+                    {
+                        Entry = dataReader["Entry"].ToString(),
+                        Title = dataReader["Title"].ToString()
+                    };
+                    quests.Add(q);
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+            return quests;
+        }
+        public List<Item> GetItems()
+        {
+            string query = "SELECT * FROM item_template";
+
+            List<Item> items = new List<Item>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    Item i = new Item()
+                    {
+                        Entry = dataReader["Entry"].ToString(),
+                        Name = dataReader["Name"].ToString()
+                    };
+                    items.Add(i);
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+            return items;
+        }
+        public List<Spell> GetSpells()
+        {
+            string query = "SELECT * FROM spell_template";
+
+            List<Spell> spells = new List<Spell>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    Spell s = new Spell()
+                    {
+                        Id = dataReader["Id"].ToString(),
+                        SpellName = dataReader["SpellName"].ToString()
+                    };
+                    spells.Add(s);
+                }
+                dataReader.Close();
+                CloseConnection();
+            }
+            return spells;
         }
 
         public List<Creature> GetCreatures()
@@ -240,7 +382,7 @@ namespace CreatureEditor
                         ResistanceShadow = dataReader["ResistanceShadow"].ToString(),
                         MechanicImmuneMask = dataReader["MechanicImmuneMask"].ToString(),
                         SchoolImmuneMask = dataReader["SchoolImmuneMask"].ToString(),
-                        Leash = dataReader["LeashRange"].ToString(),
+                        Leash = dataReader["Leash"].ToString(),
                         Family = dataReader["Family"].ToString(),
                         SpeedWalk = dataReader["SpeedWalk"].ToString(),
                         SpeedRun = dataReader["SpeedRun"].ToString(),

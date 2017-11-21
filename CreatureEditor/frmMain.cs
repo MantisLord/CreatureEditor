@@ -10,6 +10,10 @@ namespace CreatureEditor
         private List<Creature> creatures = new List<Creature>();
         private List<ClassLevelStatistic> basestats = new List<ClassLevelStatistic>();
         private List<EquipmentTemplate> equipment = new List<EquipmentTemplate>();
+        private List<Gameobject> gameobjects = new List<Gameobject>();
+        private List<Item> items = new List<Item>();
+        private List<Quest> quests = new List<Quest>();
+        private List<Spell> spells = new List<Spell>();
 
         private Creature activeCreature;
         private Creature originalCreature;
@@ -322,7 +326,16 @@ namespace CreatureEditor
             creatures = connect.GetCreatures();
             equipment = connect.GetEquipment();
             basestats = connect.GetClassLevelStats();
+            items = connect.GetItems();
+            gameobjects = connect.GetObjects();
+            quests = connect.GetQuests();
+            spells = connect.GetSpells();
+
             cbName.DataSource = creatures;
+            cbItem.DataSource = items;
+            cbGameobject.DataSource = gameobjects;
+            cbQuest.DataSource = quests;
+            cbSpells.DataSource = spells;
         }
 
         private void displayCreatureData()
@@ -609,7 +622,7 @@ namespace CreatureEditor
             if (activeCreature.SpeedWalk != originalCreature.SpeedWalk) update += "`SpeedWalk`='" + activeCreature.SpeedWalk + "', ";
             if (activeCreature.MinLevel != originalCreature.MinLevel) update += "`MinLevel`='" + activeCreature.MinLevel + "', ";
             if (activeCreature.MaxLevel != originalCreature.MaxLevel) update += "`MaxLevel`='" + activeCreature.MaxLevel + "', ";
-            if (activeCreature.Leash != originalCreature.Leash) update += "`LeashRange`='" + activeCreature.Leash + "', ";
+            if (activeCreature.Leash != originalCreature.Leash) update += "`Leash`='" + activeCreature.Leash + "', ";
             if (activeCreature.MechanicImmuneMask != originalCreature.MechanicImmuneMask) update += "`MechanicImmuneMask`='" + activeCreature.MechanicImmuneMask + "', ";
             if (activeCreature.SchoolImmuneMask != originalCreature.SchoolImmuneMask) update += "`SchoolImmuneMask`='" + activeCreature.SchoolImmuneMask + "', ";
             if (activeCreature.ResistanceArcane != originalCreature.ResistanceArcane) update += "`ResistanceArcane`='" + activeCreature.ResistanceArcane + "', ";
@@ -672,6 +685,42 @@ namespace CreatureEditor
                 txtEntry.Text = creatureId.ToString();
                 showCreatureById();
             }
+        }
+
+        private void cbItem_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var itemId = cbItem.SelectedValue;
+            if (itemId != null)
+            {
+                txtItemEntry.Text = itemId.ToString();
+            }
+        }
+
+        private void cbGameobject_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var gameobjectId = cbGameobject.SelectedValue;
+            if (gameobjectId != null)
+            {
+                txtObjectEntry.Text = gameobjectId.ToString();
+            }
+        }
+
+        private void cbQuest_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var questId = cbQuest.SelectedValue;
+            if (questId != null)
+            {
+                txtQuestEntry.Text = questId.ToString();
+            }
+        }
+        private void cbSpells_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            var spellId = cbSpells.SelectedValue;
+            if (spellId != null)
+            {
+                txtSpellId.Text = spellId.ToString();
+            }
+
         }
 
         private void btnGenerateSQL_Click(object sender, EventArgs e)
@@ -938,6 +987,40 @@ namespace CreatureEditor
                 populateFlagValues(typeof(UnitDynFlags), Convert.ToInt32(activeCreature.DynamicFlags), clbDynamicFlags, txtDynamicFlagsMask);
             }
             catch { }
+        }
+
+        private void txtEntry_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtItemEntry_TextChanged(object sender, EventArgs e)
+        {
+            var itemId = txtItemEntry.Text;
+            cbItem.SelectedValue = itemId;
+        }
+
+        private void tabPage3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtObjectEntry_TextChanged(object sender, EventArgs e)
+        {
+            var objectId = txtObjectEntry.Text;
+            cbGameobject.SelectedValue = objectId;
+        }
+
+        private void txtQuestEntry_TextChanged(object sender, EventArgs e)
+        {
+            var questEntry = txtQuestEntry.Text;
+            cbQuest.SelectedValue = questEntry;
+        }
+
+        private void txtSpellId_TextChanged(object sender, EventArgs e)
+        {
+            var spellId = txtSpellId.Text;
+            cbSpells.SelectedValue = spellId;
         }
     }
 }
