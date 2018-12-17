@@ -169,6 +169,10 @@
             this.clbExtraFlags = new System.Windows.Forms.CheckedListBox();
             this.txtExtraFlagsMask = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.txtSpellId = new System.Windows.Forms.TextBox();
+            this.txtQuestEntry = new System.Windows.Forms.TextBox();
+            this.txtObjectEntry = new System.Windows.Forms.TextBox();
+            this.txtItemEntry = new System.Windows.Forms.TextBox();
             this.cbSpells = new System.Windows.Forms.ComboBox();
             this.label71 = new System.Windows.Forms.Label();
             this.cbQuest = new System.Windows.Forms.ComboBox();
@@ -203,10 +207,17 @@
             this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
             this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
-            this.txtItemEntry = new System.Windows.Forms.TextBox();
-            this.txtObjectEntry = new System.Windows.Forms.TextBox();
-            this.txtQuestEntry = new System.Windows.Forms.TextBox();
-            this.txtSpellId = new System.Windows.Forms.TextBox();
+            this.tbPosX = new System.Windows.Forms.TextBox();
+            this.tbPosY = new System.Windows.Forms.TextBox();
+            this.label70 = new System.Windows.Forms.Label();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.tbPosZ = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label75 = new System.Windows.Forms.Label();
+            this.tbMap = new System.Windows.Forms.TextBox();
+            this.tbSearchResults = new System.Windows.Forms.TextBox();
+            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1390,7 +1401,7 @@
             this.tabControl1.Location = new System.Drawing.Point(444, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(548, 548);
+            this.tabControl1.Size = new System.Drawing.Size(752, 548);
             this.tabControl1.TabIndex = 27;
             // 
             // tabPage1
@@ -1588,6 +1599,17 @@
             // 
             // tabPage3
             // 
+            this.tabPage3.Controls.Add(this.btnSearch);
+            this.tabPage3.Controls.Add(this.tbSearchResults);
+            this.tabPage3.Controls.Add(this.label75);
+            this.tabPage3.Controls.Add(this.tbMap);
+            this.tabPage3.Controls.Add(this.label74);
+            this.tabPage3.Controls.Add(this.label73);
+            this.tabPage3.Controls.Add(this.tbPosZ);
+            this.tabPage3.Controls.Add(this.label72);
+            this.tabPage3.Controls.Add(this.label70);
+            this.tabPage3.Controls.Add(this.tbPosY);
+            this.tabPage3.Controls.Add(this.tbPosX);
             this.tabPage3.Controls.Add(this.txtSpellId);
             this.tabPage3.Controls.Add(this.txtQuestEntry);
             this.tabPage3.Controls.Add(this.txtObjectEntry);
@@ -1603,11 +1625,43 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(540, 522);
+            this.tabPage3.Size = new System.Drawing.Size(744, 522);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tools";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // txtSpellId
+            // 
+            this.txtSpellId.Location = new System.Drawing.Point(398, 317);
+            this.txtSpellId.Name = "txtSpellId";
+            this.txtSpellId.Size = new System.Drawing.Size(100, 20);
+            this.txtSpellId.TabIndex = 29;
+            this.txtSpellId.TextChanged += new System.EventHandler(this.txtSpellId_TextChanged);
+            // 
+            // txtQuestEntry
+            // 
+            this.txtQuestEntry.Location = new System.Drawing.Point(398, 231);
+            this.txtQuestEntry.Name = "txtQuestEntry";
+            this.txtQuestEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtQuestEntry.TabIndex = 28;
+            this.txtQuestEntry.TextChanged += new System.EventHandler(this.txtQuestEntry_TextChanged);
+            // 
+            // txtObjectEntry
+            // 
+            this.txtObjectEntry.Location = new System.Drawing.Point(398, 125);
+            this.txtObjectEntry.Name = "txtObjectEntry";
+            this.txtObjectEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtObjectEntry.TabIndex = 27;
+            this.txtObjectEntry.TextChanged += new System.EventHandler(this.txtObjectEntry_TextChanged);
+            // 
+            // txtItemEntry
+            // 
+            this.txtItemEntry.Location = new System.Drawing.Point(398, 30);
+            this.txtItemEntry.Name = "txtItemEntry";
+            this.txtItemEntry.Size = new System.Drawing.Size(100, 20);
+            this.txtItemEntry.TabIndex = 26;
+            this.txtItemEntry.TextChanged += new System.EventHandler(this.txtItemEntry_TextChanged);
             // 
             // cbSpells
             // 
@@ -1943,44 +1997,106 @@
             this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
             this.txtBaseDamageExp0.TabIndex = 27;
             // 
-            // txtItemEntry
+            // tbPosX
             // 
-            this.txtItemEntry.Location = new System.Drawing.Point(398, 30);
-            this.txtItemEntry.Name = "txtItemEntry";
-            this.txtItemEntry.Size = new System.Drawing.Size(100, 20);
-            this.txtItemEntry.TabIndex = 26;
-            this.txtItemEntry.TextChanged += new System.EventHandler(this.txtItemEntry_TextChanged);
+            this.tbPosX.Location = new System.Drawing.Point(89, 413);
+            this.tbPosX.Name = "tbPosX";
+            this.tbPosX.Size = new System.Drawing.Size(72, 20);
+            this.tbPosX.TabIndex = 30;
             // 
-            // txtObjectEntry
+            // tbPosY
             // 
-            this.txtObjectEntry.Location = new System.Drawing.Point(398, 125);
-            this.txtObjectEntry.Name = "txtObjectEntry";
-            this.txtObjectEntry.Size = new System.Drawing.Size(100, 20);
-            this.txtObjectEntry.TabIndex = 27;
-            this.txtObjectEntry.TextChanged += new System.EventHandler(this.txtObjectEntry_TextChanged);
+            this.tbPosY.Location = new System.Drawing.Point(89, 439);
+            this.tbPosY.Name = "tbPosY";
+            this.tbPosY.Size = new System.Drawing.Size(72, 20);
+            this.tbPosY.TabIndex = 31;
             // 
-            // txtQuestEntry
+            // label70
             // 
-            this.txtQuestEntry.Location = new System.Drawing.Point(398, 231);
-            this.txtQuestEntry.Name = "txtQuestEntry";
-            this.txtQuestEntry.Size = new System.Drawing.Size(100, 20);
-            this.txtQuestEntry.TabIndex = 28;
-            this.txtQuestEntry.TextChanged += new System.EventHandler(this.txtQuestEntry_TextChanged);
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(26, 417);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(57, 13);
+            this.label70.TabIndex = 32;
+            this.label70.Text = "position_x:";
+            this.label70.Click += new System.EventHandler(this.label70_Click);
             // 
-            // txtSpellId
+            // label72
             // 
-            this.txtSpellId.Location = new System.Drawing.Point(398, 317);
-            this.txtSpellId.Name = "txtSpellId";
-            this.txtSpellId.Size = new System.Drawing.Size(100, 20);
-            this.txtSpellId.TabIndex = 29;
-            this.txtSpellId.TextChanged += new System.EventHandler(this.txtSpellId_TextChanged);
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(26, 442);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(57, 13);
+            this.label72.TabIndex = 33;
+            this.label72.Text = "position_y:";
+            this.label72.Click += new System.EventHandler(this.label72_Click);
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(26, 468);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(57, 13);
+            this.label73.TabIndex = 35;
+            this.label73.Text = "position_z:";
+            // 
+            // tbPosZ
+            // 
+            this.tbPosZ.Location = new System.Drawing.Point(89, 465);
+            this.tbPosZ.Name = "tbPosZ";
+            this.tbPosZ.Size = new System.Drawing.Size(72, 20);
+            this.tbPosZ.TabIndex = 34;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(29, 358);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(132, 13);
+            this.label74.TabIndex = 36;
+            this.label74.Text = "Enter point to search near:";
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(29, 390);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(30, 13);
+            this.label75.TabIndex = 38;
+            this.label75.Text = "map:";
+            // 
+            // tbMap
+            // 
+            this.tbMap.Location = new System.Drawing.Point(89, 386);
+            this.tbMap.Name = "tbMap";
+            this.tbMap.Size = new System.Drawing.Size(37, 20);
+            this.tbMap.TabIndex = 37;
+            // 
+            // tbSearchResults
+            // 
+            this.tbSearchResults.Location = new System.Drawing.Point(167, 374);
+            this.tbSearchResults.Multiline = true;
+            this.tbSearchResults.Name = "tbSearchResults";
+            this.tbSearchResults.ReadOnly = true;
+            this.tbSearchResults.Size = new System.Drawing.Size(571, 140);
+            this.tbSearchResults.TabIndex = 39;
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(32, 491);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 40;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMain
             // 
             this.AcceptButton = this.btnGo;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(996, 581);
+            this.ClientSize = new System.Drawing.Size(1208, 581);
             this.Controls.Add(this.groupBox7);
             this.Controls.Add(this.groupBox10);
             this.Controls.Add(this.tabControl1);
@@ -2211,6 +2327,17 @@
         private System.Windows.Forms.TextBox txtQuestEntry;
         private System.Windows.Forms.TextBox txtObjectEntry;
         private System.Windows.Forms.TextBox txtItemEntry;
+        private System.Windows.Forms.Label label70;
+        private System.Windows.Forms.TextBox tbPosY;
+        private System.Windows.Forms.TextBox tbPosX;
+        private System.Windows.Forms.Label label72;
+        private System.Windows.Forms.Label label75;
+        private System.Windows.Forms.TextBox tbMap;
+        private System.Windows.Forms.Label label74;
+        private System.Windows.Forms.Label label73;
+        private System.Windows.Forms.TextBox tbPosZ;
+        private System.Windows.Forms.TextBox tbSearchResults;
+        private System.Windows.Forms.Button btnSearch;
     }
 }
 

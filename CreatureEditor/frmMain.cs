@@ -14,6 +14,7 @@ namespace CreatureEditor
         private List<Item> items = new List<Item>();
         private List<Quest> quests = new List<Quest>();
         private List<Spell> spells = new List<Spell>();
+        private List<CreatureSpawn> creatureSpawns = new List<CreatureSpawn>();
 
         private Creature activeCreature;
         private Creature originalCreature;
@@ -330,6 +331,7 @@ namespace CreatureEditor
             gameobjects = connect.GetObjects();
             quests = connect.GetQuests();
             spells = connect.GetSpells();
+            creatureSpawns = connect.GetCreatureSpawns();
 
             cbName.DataSource = creatures;
             cbItem.DataSource = items;
@@ -1021,6 +1023,41 @@ namespace CreatureEditor
         {
             var spellId = txtSpellId.Text;
             cbSpells.SelectedValue = spellId;
+        }
+
+        private void label70_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label72_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            int map = Convert.ToInt32(tbMap.Text);
+            double searchPosX = Convert.ToDouble(tbPosX.Text);
+            double searchPosY = Convert.ToDouble(tbPosY.Text);
+            double searchPosZ = Convert.ToDouble(tbPosZ.Text);
+
+            List<CreatureSpawn> tempSpawnList = creatureSpawns.Where(a => a.map == map).ToList();
+
+            double dist = 0;
+            foreach (CreatureSpawn spawn in tempSpawnList)
+            {
+                dist = Math.Sqrt(Math.Pow(spawn.position_x - searchPosX, 2) + Math.Pow(spawn.position_y - searchPosY, 2) + Math.Pow(spawn.position_z - searchPosZ, 2));
+                spawn.distance = dist;
+            }
+
+            List<CreatureSpawn> top25List = tempSpawnList.OrderBy(a => a.distance).Take(25).ToList();
+
+            foreach (CreatureSpawn spawn in top25List)
+            {
+                tbSearchResults.AppendText(Environment.NewLine + spawn.id + ' ' + spawn.name + ' ' + spawn.position_x + ", " + spawn.position_y + ", " + spawn.position_z + " distance: " + spawn.distance);
+            }
+            
         }
     }
 }

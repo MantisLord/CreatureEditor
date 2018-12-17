@@ -131,6 +131,22 @@ namespace CreatureEditor
         public string BaseMeleeAttackPower { get; set; }
     }
 
+    class CreatureSpawn : ICloneable
+    {
+        public long id { get; set; }
+        public string name { get; set; }
+        public long map { get; set; }
+        public double position_x { get; set; }
+        public double position_y { get; set; }
+        public double position_z { get; set; }
+        public double distance { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
     class DBConnect
     {
         private MySqlConnection connection;
@@ -417,6 +433,38 @@ namespace CreatureEditor
             }
 
             return creatures;
+        }
+
+        public List<CreatureSpawn> GetCreatureSpawns()
+        {
+            string query = "SELECT id, name, map, position_x, position_y, position_z FROM creature_import INNER JOIN creature_template ON id=entry";
+
+            List<CreatureSpawn> creatureSpawns = new List<CreatureSpawn>();
+
+            if (OpenConnection())
+            {
+                MySqlCommand cmd = new MySqlCommand(query, connection);
+                MySqlDataReader dataReader = cmd.ExecuteReader();
+
+                while (dataReader.Read())
+                {
+                    CreatureSpawn c = new CreatureSpawn()
+                    {
+                        id = Convert.ToInt64(dataReader["id"]),
+                        name = dataReader["name"].ToString(),
+                        map = Convert.ToInt64(dataReader["map"]),
+                        position_x = Convert.ToDouble(dataReader["position_x"]),
+                        position_y = Convert.ToDouble(dataReader["position_y"]),
+                        position_z = Convert.ToDouble(dataReader["position_z"]),
+                    };
+                    creatureSpawns.Add(c);
+                }
+
+                dataReader.Close();
+                CloseConnection();
+            }
+
+            return creatureSpawns;
         }
     }
 }
