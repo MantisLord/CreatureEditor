@@ -403,7 +403,7 @@ namespace CreatureEditor
                         SpeedWalk = dataReader["SpeedWalk"].ToString(),
                         SpeedRun = dataReader["SpeedRun"].ToString(),
                         MovementType = dataReader["MovementType"].ToString(),
-                        Faction = dataReader["FactionAlliance"].ToString(),
+                        Faction = dataReader["Faction"].ToString(),
                         ModelId1 = dataReader["ModelId1"].ToString(),
                         ModelId2 = dataReader["ModelId2"].ToString(),
                         ModelId3 = dataReader["ModelId3"].ToString(),
