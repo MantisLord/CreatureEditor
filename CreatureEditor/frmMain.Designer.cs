@@ -169,6 +169,17 @@
             this.clbExtraFlags = new System.Windows.Forms.CheckedListBox();
             this.txtExtraFlagsMask = new System.Windows.Forms.TextBox();
             this.tabPage3 = new System.Windows.Forms.TabPage();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.tbSearchResults = new System.Windows.Forms.TextBox();
+            this.label75 = new System.Windows.Forms.Label();
+            this.tbMap = new System.Windows.Forms.TextBox();
+            this.label74 = new System.Windows.Forms.Label();
+            this.label73 = new System.Windows.Forms.Label();
+            this.tbPosZ = new System.Windows.Forms.TextBox();
+            this.label72 = new System.Windows.Forms.Label();
+            this.label70 = new System.Windows.Forms.Label();
+            this.tbPosY = new System.Windows.Forms.TextBox();
+            this.tbPosX = new System.Windows.Forms.TextBox();
             this.txtSpellId = new System.Windows.Forms.TextBox();
             this.txtQuestEntry = new System.Windows.Forms.TextBox();
             this.txtObjectEntry = new System.Windows.Forms.TextBox();
@@ -207,17 +218,6 @@
             this.txtBaseDamageExp1 = new System.Windows.Forms.TextBox();
             this.label57 = new System.Windows.Forms.Label();
             this.txtBaseDamageExp0 = new System.Windows.Forms.TextBox();
-            this.tbPosX = new System.Windows.Forms.TextBox();
-            this.tbPosY = new System.Windows.Forms.TextBox();
-            this.label70 = new System.Windows.Forms.Label();
-            this.label72 = new System.Windows.Forms.Label();
-            this.label73 = new System.Windows.Forms.Label();
-            this.tbPosZ = new System.Windows.Forms.TextBox();
-            this.label74 = new System.Windows.Forms.Label();
-            this.label75 = new System.Windows.Forms.Label();
-            this.tbMap = new System.Windows.Forms.TextBox();
-            this.tbSearchResults = new System.Windows.Forms.TextBox();
-            this.btnSearch = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
@@ -1401,7 +1401,7 @@
             this.tabControl1.Location = new System.Drawing.Point(444, 3);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(752, 548);
+            this.tabControl1.Size = new System.Drawing.Size(762, 574);
             this.tabControl1.TabIndex = 27;
             // 
             // tabPage1
@@ -1414,7 +1414,7 @@
             this.tabPage1.Location = new System.Drawing.Point(4, 22);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(540, 522);
+            this.tabPage1.Size = new System.Drawing.Size(744, 522);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Combat";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -1439,7 +1439,7 @@
             this.tabPage2.Location = new System.Drawing.Point(4, 22);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(540, 522);
+            this.tabPage2.Size = new System.Drawing.Size(754, 548);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Flags";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -1449,7 +1449,7 @@
             this.clbDynamicFlags.CheckOnClick = true;
             this.clbDynamicFlags.ColumnWidth = 100;
             this.clbDynamicFlags.FormattingEnabled = true;
-            this.clbDynamicFlags.Location = new System.Drawing.Point(7, 390);
+            this.clbDynamicFlags.Location = new System.Drawing.Point(6, 419);
             this.clbDynamicFlags.Margin = new System.Windows.Forms.Padding(2);
             this.clbDynamicFlags.MultiColumn = true;
             this.clbDynamicFlags.Name = "clbDynamicFlags";
@@ -1459,7 +1459,7 @@
             // 
             // txtDynamicFlagsMask
             // 
-            this.txtDynamicFlagsMask.Location = new System.Drawing.Point(60, 365);
+            this.txtDynamicFlagsMask.Location = new System.Drawing.Point(59, 394);
             this.txtDynamicFlagsMask.Margin = new System.Windows.Forms.Padding(2);
             this.txtDynamicFlagsMask.Name = "txtDynamicFlagsMask";
             this.txtDynamicFlagsMask.Size = new System.Drawing.Size(75, 20);
@@ -1469,7 +1469,7 @@
             // label46
             // 
             this.label46.AutoSize = true;
-            this.label46.Location = new System.Drawing.Point(4, 369);
+            this.label46.Location = new System.Drawing.Point(3, 398);
             this.label46.Name = "label46";
             this.label46.Size = new System.Drawing.Size(51, 13);
             this.label46.TabIndex = 36;
@@ -1480,7 +1480,7 @@
             this.clbUnitFlags.CheckOnClick = true;
             this.clbUnitFlags.ColumnWidth = 130;
             this.clbUnitFlags.FormattingEnabled = true;
-            this.clbUnitFlags.Location = new System.Drawing.Point(267, 27);
+            this.clbUnitFlags.Location = new System.Drawing.Point(326, 27);
             this.clbUnitFlags.Margin = new System.Windows.Forms.Padding(2);
             this.clbUnitFlags.MultiColumn = true;
             this.clbUnitFlags.Name = "clbUnitFlags";
@@ -1490,7 +1490,7 @@
             // 
             // txtUnitFlagsMask
             // 
-            this.txtUnitFlagsMask.Location = new System.Drawing.Point(300, 5);
+            this.txtUnitFlagsMask.Location = new System.Drawing.Point(359, 5);
             this.txtUnitFlagsMask.Margin = new System.Windows.Forms.Padding(2);
             this.txtUnitFlagsMask.Name = "txtUnitFlagsMask";
             this.txtUnitFlagsMask.Size = new System.Drawing.Size(75, 20);
@@ -1500,7 +1500,7 @@
             // label45
             // 
             this.label45.AutoSize = true;
-            this.label45.Location = new System.Drawing.Point(266, 8);
+            this.label45.Location = new System.Drawing.Point(325, 8);
             this.label45.Name = "label45";
             this.label45.Size = new System.Drawing.Size(29, 13);
             this.label45.TabIndex = 33;
@@ -1511,7 +1511,7 @@
             this.clbCreatureTypeFlags.CheckOnClick = true;
             this.clbCreatureTypeFlags.ColumnWidth = 125;
             this.clbCreatureTypeFlags.FormattingEnabled = true;
-            this.clbCreatureTypeFlags.Location = new System.Drawing.Point(267, 297);
+            this.clbCreatureTypeFlags.Location = new System.Drawing.Point(326, 297);
             this.clbCreatureTypeFlags.Margin = new System.Windows.Forms.Padding(2);
             this.clbCreatureTypeFlags.MultiColumn = true;
             this.clbCreatureTypeFlags.Name = "clbCreatureTypeFlags";
@@ -1521,7 +1521,7 @@
             // 
             // txtCreatureTypeFlagsMask
             // 
-            this.txtCreatureTypeFlagsMask.Location = new System.Drawing.Point(305, 275);
+            this.txtCreatureTypeFlagsMask.Location = new System.Drawing.Point(364, 275);
             this.txtCreatureTypeFlagsMask.Margin = new System.Windows.Forms.Padding(2);
             this.txtCreatureTypeFlagsMask.Name = "txtCreatureTypeFlagsMask";
             this.txtCreatureTypeFlagsMask.Size = new System.Drawing.Size(75, 20);
@@ -1531,7 +1531,7 @@
             // label43
             // 
             this.label43.AutoSize = true;
-            this.label43.Location = new System.Drawing.Point(266, 278);
+            this.label43.Location = new System.Drawing.Point(325, 278);
             this.label43.Name = "label43";
             this.label43.Size = new System.Drawing.Size(34, 13);
             this.label43.TabIndex = 30;
@@ -1540,7 +1540,7 @@
             // label41
             // 
             this.label41.AutoSize = true;
-            this.label41.Location = new System.Drawing.Point(150, 8);
+            this.label41.Location = new System.Drawing.Point(209, 8);
             this.label41.Name = "label41";
             this.label41.Size = new System.Drawing.Size(32, 13);
             this.label41.TabIndex = 29;
@@ -1557,7 +1557,7 @@
             // 
             // txtNPCFlagsMask
             // 
-            this.txtNPCFlagsMask.Location = new System.Drawing.Point(186, 5);
+            this.txtNPCFlagsMask.Location = new System.Drawing.Point(245, 5);
             this.txtNPCFlagsMask.Margin = new System.Windows.Forms.Padding(2);
             this.txtNPCFlagsMask.Name = "txtNPCFlagsMask";
             this.txtNPCFlagsMask.Size = new System.Drawing.Size(75, 20);
@@ -1569,7 +1569,7 @@
             this.clbNPCFlags.CheckOnClick = true;
             this.clbNPCFlags.ColumnWidth = 125;
             this.clbNPCFlags.FormattingEnabled = true;
-            this.clbNPCFlags.Location = new System.Drawing.Point(149, 27);
+            this.clbNPCFlags.Location = new System.Drawing.Point(208, 27);
             this.clbNPCFlags.Margin = new System.Windows.Forms.Padding(2);
             this.clbNPCFlags.Name = "clbNPCFlags";
             this.clbNPCFlags.Size = new System.Drawing.Size(112, 394);
@@ -1584,7 +1584,7 @@
             this.clbExtraFlags.Location = new System.Drawing.Point(5, 27);
             this.clbExtraFlags.Margin = new System.Windows.Forms.Padding(2);
             this.clbExtraFlags.Name = "clbExtraFlags";
-            this.clbExtraFlags.Size = new System.Drawing.Size(140, 334);
+            this.clbExtraFlags.Size = new System.Drawing.Size(199, 364);
             this.clbExtraFlags.TabIndex = 25;
             this.clbExtraFlags.SelectedIndexChanged += new System.EventHandler(this.clbExtraFlags_SelectedIndexChanged);
             // 
@@ -1625,11 +1625,105 @@
             this.tabPage3.Location = new System.Drawing.Point(4, 22);
             this.tabPage3.Name = "tabPage3";
             this.tabPage3.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage3.Size = new System.Drawing.Size(744, 522);
+            this.tabPage3.Size = new System.Drawing.Size(754, 548);
             this.tabPage3.TabIndex = 2;
             this.tabPage3.Text = "Tools";
             this.tabPage3.UseVisualStyleBackColor = true;
             this.tabPage3.Click += new System.EventHandler(this.tabPage3_Click);
+            // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(32, 491);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(75, 23);
+            this.btnSearch.TabIndex = 40;
+            this.btnSearch.Text = "Search";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // tbSearchResults
+            // 
+            this.tbSearchResults.Location = new System.Drawing.Point(167, 374);
+            this.tbSearchResults.Multiline = true;
+            this.tbSearchResults.Name = "tbSearchResults";
+            this.tbSearchResults.ReadOnly = true;
+            this.tbSearchResults.Size = new System.Drawing.Size(571, 140);
+            this.tbSearchResults.TabIndex = 39;
+            // 
+            // label75
+            // 
+            this.label75.AutoSize = true;
+            this.label75.Location = new System.Drawing.Point(29, 390);
+            this.label75.Name = "label75";
+            this.label75.Size = new System.Drawing.Size(30, 13);
+            this.label75.TabIndex = 38;
+            this.label75.Text = "map:";
+            // 
+            // tbMap
+            // 
+            this.tbMap.Location = new System.Drawing.Point(89, 386);
+            this.tbMap.Name = "tbMap";
+            this.tbMap.Size = new System.Drawing.Size(37, 20);
+            this.tbMap.TabIndex = 37;
+            // 
+            // label74
+            // 
+            this.label74.AutoSize = true;
+            this.label74.Location = new System.Drawing.Point(29, 358);
+            this.label74.Name = "label74";
+            this.label74.Size = new System.Drawing.Size(132, 13);
+            this.label74.TabIndex = 36;
+            this.label74.Text = "Enter point to search near:";
+            // 
+            // label73
+            // 
+            this.label73.AutoSize = true;
+            this.label73.Location = new System.Drawing.Point(26, 468);
+            this.label73.Name = "label73";
+            this.label73.Size = new System.Drawing.Size(57, 13);
+            this.label73.TabIndex = 35;
+            this.label73.Text = "position_z:";
+            // 
+            // tbPosZ
+            // 
+            this.tbPosZ.Location = new System.Drawing.Point(89, 465);
+            this.tbPosZ.Name = "tbPosZ";
+            this.tbPosZ.Size = new System.Drawing.Size(72, 20);
+            this.tbPosZ.TabIndex = 34;
+            // 
+            // label72
+            // 
+            this.label72.AutoSize = true;
+            this.label72.Location = new System.Drawing.Point(26, 442);
+            this.label72.Name = "label72";
+            this.label72.Size = new System.Drawing.Size(57, 13);
+            this.label72.TabIndex = 33;
+            this.label72.Text = "position_y:";
+            this.label72.Click += new System.EventHandler(this.label72_Click);
+            // 
+            // label70
+            // 
+            this.label70.AutoSize = true;
+            this.label70.Location = new System.Drawing.Point(26, 417);
+            this.label70.Name = "label70";
+            this.label70.Size = new System.Drawing.Size(57, 13);
+            this.label70.TabIndex = 32;
+            this.label70.Text = "position_x:";
+            this.label70.Click += new System.EventHandler(this.label70_Click);
+            // 
+            // tbPosY
+            // 
+            this.tbPosY.Location = new System.Drawing.Point(89, 439);
+            this.tbPosY.Name = "tbPosY";
+            this.tbPosY.Size = new System.Drawing.Size(72, 20);
+            this.tbPosY.TabIndex = 31;
+            // 
+            // tbPosX
+            // 
+            this.tbPosX.Location = new System.Drawing.Point(89, 413);
+            this.tbPosX.Name = "tbPosX";
+            this.tbPosX.Size = new System.Drawing.Size(72, 20);
+            this.tbPosX.TabIndex = 30;
             // 
             // txtSpellId
             // 
@@ -1996,100 +2090,6 @@
             this.txtBaseDamageExp0.ReadOnly = true;
             this.txtBaseDamageExp0.Size = new System.Drawing.Size(46, 20);
             this.txtBaseDamageExp0.TabIndex = 27;
-            // 
-            // tbPosX
-            // 
-            this.tbPosX.Location = new System.Drawing.Point(89, 413);
-            this.tbPosX.Name = "tbPosX";
-            this.tbPosX.Size = new System.Drawing.Size(72, 20);
-            this.tbPosX.TabIndex = 30;
-            // 
-            // tbPosY
-            // 
-            this.tbPosY.Location = new System.Drawing.Point(89, 439);
-            this.tbPosY.Name = "tbPosY";
-            this.tbPosY.Size = new System.Drawing.Size(72, 20);
-            this.tbPosY.TabIndex = 31;
-            // 
-            // label70
-            // 
-            this.label70.AutoSize = true;
-            this.label70.Location = new System.Drawing.Point(26, 417);
-            this.label70.Name = "label70";
-            this.label70.Size = new System.Drawing.Size(57, 13);
-            this.label70.TabIndex = 32;
-            this.label70.Text = "position_x:";
-            this.label70.Click += new System.EventHandler(this.label70_Click);
-            // 
-            // label72
-            // 
-            this.label72.AutoSize = true;
-            this.label72.Location = new System.Drawing.Point(26, 442);
-            this.label72.Name = "label72";
-            this.label72.Size = new System.Drawing.Size(57, 13);
-            this.label72.TabIndex = 33;
-            this.label72.Text = "position_y:";
-            this.label72.Click += new System.EventHandler(this.label72_Click);
-            // 
-            // label73
-            // 
-            this.label73.AutoSize = true;
-            this.label73.Location = new System.Drawing.Point(26, 468);
-            this.label73.Name = "label73";
-            this.label73.Size = new System.Drawing.Size(57, 13);
-            this.label73.TabIndex = 35;
-            this.label73.Text = "position_z:";
-            // 
-            // tbPosZ
-            // 
-            this.tbPosZ.Location = new System.Drawing.Point(89, 465);
-            this.tbPosZ.Name = "tbPosZ";
-            this.tbPosZ.Size = new System.Drawing.Size(72, 20);
-            this.tbPosZ.TabIndex = 34;
-            // 
-            // label74
-            // 
-            this.label74.AutoSize = true;
-            this.label74.Location = new System.Drawing.Point(29, 358);
-            this.label74.Name = "label74";
-            this.label74.Size = new System.Drawing.Size(132, 13);
-            this.label74.TabIndex = 36;
-            this.label74.Text = "Enter point to search near:";
-            // 
-            // label75
-            // 
-            this.label75.AutoSize = true;
-            this.label75.Location = new System.Drawing.Point(29, 390);
-            this.label75.Name = "label75";
-            this.label75.Size = new System.Drawing.Size(30, 13);
-            this.label75.TabIndex = 38;
-            this.label75.Text = "map:";
-            // 
-            // tbMap
-            // 
-            this.tbMap.Location = new System.Drawing.Point(89, 386);
-            this.tbMap.Name = "tbMap";
-            this.tbMap.Size = new System.Drawing.Size(37, 20);
-            this.tbMap.TabIndex = 37;
-            // 
-            // tbSearchResults
-            // 
-            this.tbSearchResults.Location = new System.Drawing.Point(167, 374);
-            this.tbSearchResults.Multiline = true;
-            this.tbSearchResults.Name = "tbSearchResults";
-            this.tbSearchResults.ReadOnly = true;
-            this.tbSearchResults.Size = new System.Drawing.Size(571, 140);
-            this.tbSearchResults.TabIndex = 39;
-            // 
-            // btnSearch
-            // 
-            this.btnSearch.Location = new System.Drawing.Point(32, 491);
-            this.btnSearch.Name = "btnSearch";
-            this.btnSearch.Size = new System.Drawing.Size(75, 23);
-            this.btnSearch.TabIndex = 40;
-            this.btnSearch.Text = "Search";
-            this.btnSearch.UseVisualStyleBackColor = true;
-            this.btnSearch.Click += new System.EventHandler(this.button1_Click);
             // 
             // frmMain
             // 

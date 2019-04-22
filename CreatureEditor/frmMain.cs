@@ -159,28 +159,30 @@ namespace CreatureEditor
 
         enum CreatureExtraFlags
         {
-            InstanceBind        = 0x00000001,       // creature kill bind instance with killer and killer's group
-            Civilian            = 0x00000002,       // not aggro (ignore faction/reputation hostility)
-            NoParry             = 0x00000004,       // creature can't parry
-            NoParryHasten       = 0x00000008,       // creature can't counter-attack at parry
-            NoBlock             = 0x00000010,       // creature can't block
-            NoCrush             = 0x00000020,       // creature can't do crush attacks
-            NoXPAtKill          = 0x00000040,       // creature kill not provide XP
-            Invisible           = 0x00000080,       // creature is always invisible for player (mostly trigger creatures)
-            NotTauntable        = 0x00000100,       // creature is immune to taunt auras and effect attack me
-            AggroZone           = 0x00000200,       // creature sets itself in combat with zone on aggro
-            Guard               = 0x00000400,       // creature is a guard
-            NoCallAssist        = 0x00000800,       // creature shouldn't call for assistance on aggro
-            Active              = 0x00001000,       // creature is active object. Grid of this creature will be loaded and creature set as active
-            MMapForceEnable     = 0x00002000,       // creature is forced to use MMaps
-            MMapForceDisable    = 0x00004000,       // creature is forced to NOT use MMaps
-            WalkInWater         = 0x00008000,       // creature is forced to walk in water even it can swim
-            HaveNoSwimAnimation = 0x00010000,       // we have to not set "swim" animation or creature will have "no animation"
-            NoMelee             = 0x00020000,       // creature can't melee
-            FarView             = 0x00040000,       // creature with far view
-            DontDismountOnAggro = 0x00080000,       // creature is mounted and should fight mounted
-            IgnoreUsedPosition  = 0x00100000,       // ignore creature when checking used positions around target
-            CountSpawns         = 0x00200000,       // count creature spawns in Map*
+            INSTANCE_BIND               = 0x00000001,   // 1 creature kill bind instance with killer and killer's group
+            NO_AGGRO_ON_SIGHT           = 0x00000002,   // 2 no aggro (ignore faction/reputation hostility)
+            NO_PARRY                    = 0x00000004,   // 4 creature can't parry
+            NO_PARRY_HASTEN             = 0x00000008,   // 8 creature can't counter-attack at parry
+            NO_BLOCK                    = 0x00000010,   // 16 creature can't block
+            NO_CRUSH                    = 0x00000020,   // 32 creature can't do crush attacks
+            NO_XP_AT_KILL               = 0x00000040,   // 64 creature kill not provide XP
+            INVISIBLE                   = 0x00000080,   // 128 creature is always invisible for player (mostly trigger creatures)
+            NOT_TAUNTABLE               = 0x00000100,   // 256 creature is immune to taunt auras and effect attack me
+            AGGRO_ZONE                  = 0x00000200,   // 512 creature sets itself in combat with zone on aggro
+            GUARD                       = 0x00000400,   // 1024 creature is a guard
+            NO_CALL_ASSIST              = 0x00000800,   // 2048 creature shouldn't call for assistance on aggro
+            ACTIVE                      = 0x00001000,   // 4096 creature is active object. Grid of this creature will be loaded and creature set as active
+            MMAP_FORCE_ENABLE           = 0x00002000,   // 8192 creature is forced to use MMaps
+            MMAP_FORCE_DISABLE          = 0x00004000,   // 16384 creature is forced to NOT use MMaps
+            WALK_IN_WATER               = 0x00008000,   // 32768 creature is forced to walk in water even it can swim
+            CIVILIAN                    = 0x00010000,   // 65536 CreatureInfo->civilian substitute (for new expansions)
+            NO_MELEE                    = 0x00020000,   // 131072 creature can't melee
+            FAR_VIEW                    = 0x00040000,   // 262144 creature with far view
+            FORCE_ATTACKING_CAPABILITY  = 0x00080000,   // 524288 SetForceAttackingCapability(true); for nonattackable, nontargetable creatures that should be able to attack nontheless
+            IGNORE_USED_POSITION        = 0x00100000,   // 1048576 ignore creature when checking used positions around target
+            COUNT_SPAWNS                = 0x00200000,   // 2097152 count creature spawns in Map*
+            HASTE_SPELL_IMMUNITY        = 0x00400000,   // 4194304 immunity to COT or Mind Numbing Poison - very common in instances
+            DUAL_WIELD_FORCED           = 0x00800000,   // 8388606 creature is alwyas dual wielding (even if unarmed)
         }
 
         enum CreatureTypeFlags

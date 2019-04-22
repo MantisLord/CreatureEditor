@@ -437,7 +437,7 @@ namespace CreatureEditor
 
         public List<CreatureSpawn> GetCreatureSpawns()
         {
-            string query = "SELECT id, name, map, position_x, position_y, position_z FROM creature_import INNER JOIN creature_template ON id=entry";
+            string query = "SELECT id, name, map, position_x, position_y, position_z FROM creature INNER JOIN creature_template ON id=entry";
 
             List<CreatureSpawn> creatureSpawns = new List<CreatureSpawn>();
 
