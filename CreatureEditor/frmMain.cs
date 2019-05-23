@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Windows.Forms;
 
@@ -993,20 +994,10 @@ namespace CreatureEditor
             catch { }
         }
 
-        private void txtEntry_TextChanged(object sender, EventArgs e)
-        {
-
-        }
-
         private void txtItemEntry_TextChanged(object sender, EventArgs e)
         {
             var itemId = txtItemEntry.Text;
             cbItem.SelectedValue = itemId;
-        }
-
-        private void tabPage3_Click(object sender, EventArgs e)
-        {
-
         }
 
         private void txtObjectEntry_TextChanged(object sender, EventArgs e)
@@ -1027,17 +1018,7 @@ namespace CreatureEditor
             cbSpells.SelectedValue = spellId;
         }
 
-        private void label70_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void label72_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void button1_Click(object sender, EventArgs e)
+        private void btnSearch_Click(object sender, EventArgs e)
         {
             int map = Convert.ToInt32(tbMap.Text);
             double searchPosX = Convert.ToDouble(tbPosX.Text);
@@ -1059,7 +1040,178 @@ namespace CreatureEditor
             {
                 tbSearchResults.AppendText(Environment.NewLine + spawn.id + ' ' + spawn.name + ' ' + spawn.position_x + ", " + spawn.position_y + ", " + spawn.position_z + " distance: " + spawn.distance);
             }
-            
+        }
+
+        private void printResults(List<UpdateObjectData> results)
+        {
+            foreach (UpdateObjectData newData in results)
+            {
+                Creature existing = creatures.FirstOrDefault(a => a.Entry == newData.Entry);
+                string differences = string.Empty;
+                string updateQuery = Environment.NewLine + "UPDATE `creature_template` SET ";
+                if (existing != null)
+                {
+                    if (existing.Scale != newData.Scale && newData.Scale != null)
+                    {
+                        differences += Environment.NewLine + "SCALE | SNIFF: " + newData.Scale + " | CURRENT: " + existing.Scale;
+                        updateQuery += "`Scale`=" + newData.Scale + ", ";
+                    }
+                    if (existing.Faction != newData.Faction && newData.Faction != null)
+                    {
+                        differences += Environment.NewLine + "FACTION | SNIFF: " + newData.Faction + " | CURRENT: " + existing.Faction;
+                        updateQuery += "`Faction`=" + newData.Faction + ", ";
+                    }
+                    // level observed in sniff is less than the existing minimum
+                    if (Convert.ToInt32(existing.MinLevel) > Convert.ToInt32(newData.Level) && newData.Level != null && newData.Level != "110")
+                    {
+                        differences += Environment.NewLine + "MINLEVEL | SNIFF: " + newData.Level + " | CURRENT: " + existing.MinLevel;
+                        updateQuery += "`MinLevel`=" + newData.Level + ", ";
+                    }
+                    // level observed in sniff is more than the existing maximum
+                    if (Convert.ToInt32(existing.MaxLevel) < Convert.ToInt32(newData.Level) && newData.Level != null && newData.Level != "110")
+                    {
+                        differences += Environment.NewLine + "MAXLEVEL | SNIFF: " + newData.Level + " | CURRENT: " + existing.MaxLevel;
+                        updateQuery += "`MaxLevel`=" + newData.Level + ", ";
+                    }
+                    // exclude InCombat/PetInCombat UnitFlags which are added dynamically
+                    if (existing.UnitFlags != newData.UnitFlags && newData.UnitFlags != null && newData.UnitFlags != "526336" && newData.UnitFlags != "2048" && existing.UnitFlags == "0")
+                    {
+                        differences += Environment.NewLine + "UNITFLAGS | SNIFF: " + newData.UnitFlags + " | CURRENT: " + existing.UnitFlags;
+                        updateQuery += "`UnitFlags`=" + newData.UnitFlags + ", ";
+                    }
+                    if (existing.Rate != newData.BaseAttackTime && newData.BaseAttackTime != null)
+                    {
+                        differences += Environment.NewLine + "MELEEBASEATTACKTIME | SNIFF: " + newData.BaseAttackTime + " | CURRENT: " + existing.Rate;
+                        updateQuery += "`MeleeBaseAttackTime`=" + newData.BaseAttackTime + ", ";
+                    }
+                    if (existing.ModelId1 != newData.DisplayId && newData.DisplayId != null)
+                    {
+                        //differences += Environment.NewLine + "DISPLAYID | SNIFF: " + newData.DisplayId + " | CURRENT: " + existing.ModelId1;
+                        //updateQuery += "`ModelId1`=" + newData.DisplayId + ", ";
+                    }
+                    if (existing.NpcFlags != newData.NpcFlags && newData.NpcFlags != null)
+                    {
+                        differences += Environment.NewLine + "NPCFLAGS | SNIFF: " + newData.NpcFlags + " | CURRENT: " + existing.NpcFlags;
+                        updateQuery += "`NpcFlags`=" + newData.NpcFlags + ", ";
+                    }
+                    if (existing.SpeedWalk != newData.SpeedWalk && newData.SpeedWalk != null)
+                    {
+                        differences += Environment.NewLine + "WALKSPEED | SNIFF: " + newData.SpeedWalk + " | CURRENT: " + existing.SpeedWalk;
+                        updateQuery += "`SpeedWalk`=" + newData.SpeedWalk + ", ";
+                    }
+                    if (existing.SpeedRun != newData.SpeedRun && newData.SpeedRun != null)
+                    {
+                        differences += Environment.NewLine + "RUNSPEED | SNIFF: " + newData.SpeedRun + " | CURRENT: " + existing.SpeedRun;
+                        updateQuery += "`SpeedRun`=" + newData.SpeedRun + ", ";
+                    }
+                }
+                if (differences != "")
+                {
+                    differences = Environment.NewLine + existing.Name + ", Entry: " + existing.Entry + differences;
+                    updateQuery = updateQuery + " WHERE `Entry`=" + existing.Entry + "; -- " + existing.Name;
+                    updateQuery = updateQuery.Replace(",  W", " W");
+
+                    if (!tbSniffAnalysis.Text.Contains(updateQuery))
+                        tbSniffAnalysis.AppendText(updateQuery);
+
+                    Update();
+                }
+            }
+        }
+
+        private void btnStartSniffAnalysis_Click(object sender, EventArgs e)
+        {
+            UpdateObjectData newData = new UpdateObjectData();
+            var results = new List<UpdateObjectData>();
+            string[] files = Directory.GetFiles(tbSearchDirectory.Text, "*.txt", SearchOption.AllDirectories);
+            int counter = 0;
+            foreach (var f in files)
+            {
+                if (counter == 3)
+                {
+                    break;
+                }
+
+                foreach (var l in File.ReadAllLines(f))
+                {
+                    if (!l.Contains("UNIT_FIELD_TARGET") && !l.Contains("MoverGUID") && (l.Contains(" Entry: ") || l.Contains(" Player/0 ")))
+                    {
+                        if (newData.Entry != null)
+                        {
+                            if (!results.Contains(newData))
+                            {
+                                results.Add(newData);
+                            }
+                        }
+                        newData = new UpdateObjectData();
+                        if (!l.Contains(" Player/0 "))
+                            newData.Entry = l.Split(new string[] { " Entry: " }, StringSplitOptions.None)[1].Split(' ')[0];
+                    }
+                    else if (l.Contains("OBJECT_FIELD_SCALE: "))
+                    {
+                        newData.Scale = l.Split(new string[] { "SCALE: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains("UNIT_FIELD_LEVEL: "))
+                    {
+                        newData.Level = l.Split(new string[] { "LEVEL: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains("UNIT_FIELD_FACTIONTEMPLATE: "))
+                    {
+                        newData.Faction = l.Split(new string[] { "FACTIONTEMPLATE: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains("UNIT_FIELD_FLAGS: "))
+                    {
+                        newData.UnitFlags = l.Split(new string[] { "FLAGS: " }, StringSplitOptions.None)[1];
+                    }
+                    else if (l.Contains("UNIT_FIELD_BASEATTACKTIME: "))
+                    {
+                        newData.BaseAttackTime = l.Split(new string[] { "BASEATTACKTIME: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains("UNIT_FIELD_DISPLAYID: "))
+                    {
+                        newData.DisplayId = l.Split(new string[] { "DISPLAYID: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains("UNIT_FIELD_BOUNDINGRADIUS: "))
+                    {
+                        newData.BoundingRadius = l.Split(new string[] { "BOUNDINGRADIUS: " }, StringSplitOptions.None)[1];
+                    }
+                    else if (l.Contains("UNIT_FIELD_COMBATREACH: "))
+                    {
+                        newData.CombatReach = l.Split(new string[] { "COMBATREACH: " }, StringSplitOptions.None)[1];
+                    }
+                    else if (l.Contains("UNIT_NPC_FLAGS: "))
+                    {
+                        newData.NpcFlags = l.Split(new string[] { "FLAGS: " }, StringSplitOptions.None)[1].Split('/')[0];
+                    }
+                    else if (l.Contains(" WalkSpeed: "))
+                    {
+                        newData.SpeedWalk = Math.Round((Convert.ToDouble(l.Split(new string[] { "WalkSpeed: " }, StringSplitOptions.None)[1]) / 2.5), 5).ToString();
+                    }
+                    else if (l.Contains(" RunSpeed: "))
+                    {
+                        newData.SpeedRun = Math.Round((Convert.ToDouble(l.Split(new string[] { "RunSpeed: " }, StringSplitOptions.None)[1]) / 7.0), 5).ToString();
+                    }
+                }
+
+                counter++;
+                tbSniffAnalysis.AppendText("[" + f + "] Finished parsing " + counter + " of " + files.Length + " files. " + results.Count + " data points (updateObject-creatures) found so far." + Environment.NewLine);
+                Update();
+            }
+            List<UpdateObjectData> sortedResults = results.OrderBy(o => o.Entry).ToList();
+            printResults(sortedResults);
+        }
+
+        private void btnBrowse_Click(object sender, EventArgs e)
+        {
+            using(var fbd = new FolderBrowserDialog())
+            {
+                DialogResult result = fbd.ShowDialog();
+
+                if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
+                {
+                    tbSearchDirectory.Text = fbd.SelectedPath;
+                }
+            }
         }
     }
 }

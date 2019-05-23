@@ -82,6 +82,7 @@ namespace CreatureEditor
         public string MaxLootGold { get; set; }
         public string InhabitType { get; set; }
         public string RegenerateStats { get; set; }
+        public string Scale { get; set; }
 
         public string HealthMultiplier { get; set; }
         public string ManaMultiplier { get; set; } // PowerMultiplier
@@ -140,6 +141,27 @@ namespace CreatureEditor
         public double position_y { get; set; }
         public double position_z { get; set; }
         public double distance { get; set; }
+
+        public object Clone()
+        {
+            return MemberwiseClone();
+        }
+    }
+
+    class UpdateObjectData : ICloneable
+    {
+        public string Entry { get; set; }
+        public string Scale { get; set; }
+        public string Level { get; set; }
+        public string Faction { get; set; }
+        public string UnitFlags { get; set; }
+        public string BaseAttackTime { get; set; }
+        public string DisplayId { get; set; }
+        public string BoundingRadius { get; set; }
+        public string CombatReach { get; set; }
+        public string NpcFlags { get; set; }
+        public string SpeedWalk { get; set; }
+        public string SpeedRun { get; set; }
 
         public object Clone()
         {
@@ -400,8 +422,8 @@ namespace CreatureEditor
                         SchoolImmuneMask = dataReader["SchoolImmuneMask"].ToString(),
                         Leash = dataReader["Leash"].ToString(),
                         Family = dataReader["Family"].ToString(),
-                        SpeedWalk = dataReader["SpeedWalk"].ToString(),
-                        SpeedRun = dataReader["SpeedRun"].ToString(),
+                        SpeedWalk = Math.Round(Convert.ToDouble(dataReader["SpeedWalk"]), 5).ToString(),
+                        SpeedRun = Math.Round(Convert.ToDouble(dataReader["SpeedRun"]), 5).ToString(),
                         MovementType = dataReader["MovementType"].ToString(),
                         Faction = dataReader["Faction"].ToString(),
                         ModelId1 = dataReader["ModelId1"].ToString(),
@@ -424,6 +446,7 @@ namespace CreatureEditor
                         MinLootGold = dataReader["MinLootGold"].ToString(),
                         InhabitType = dataReader["InhabitType"].ToString(),
                         RegenerateStats = dataReader["RegenerateStats"].ToString(),
+                        Scale = dataReader["Scale"].ToString(),
                     };
                     creatures.Add(c);
                 }
