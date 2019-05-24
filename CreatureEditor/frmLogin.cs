@@ -28,6 +28,9 @@ namespace CreatureEditor
                 frm.load(txtServer.Text, txtDatabase.Text, txtUsername.Text, txtPassword.Text, txtPort.Text);
                 frm.Show();
 
+                TabControl t = (TabControl)frm.Controls.Find("tabControl1", true)[0];
+                t.SelectedIndex = 0;
+
                 panel1.Visible = false;
             }
             catch (Exception ex)
