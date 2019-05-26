@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -336,6 +337,8 @@ namespace CreatureEditor
             spells = connect.GetSpells();
             creatureSpawns = connect.GetCreatureSpawns();
 
+            tbSearchDirectory.Text = Settings1.Default.sniffPath;
+
             cbName.DataSource = creatures;
             cbItem.DataSource = items;
             cbGameobject.DataSource = gameobjects;
@@ -540,20 +543,27 @@ namespace CreatureEditor
 
         private void showCreatureById()
         {
-            var creatureId = txtEntry.Text;
-            cbName.SelectedValue = creatureId;
-            Creature result = creatures.FirstOrDefault(a => a.Entry == creatureId);
-            if (result != null)
+            try
             {
-                activeCreature = result;
-                originalCreature = (Creature)result.Clone();
-                displayCreatureData();
-                recalculateCombatStats();
-                updateClassLevelStats();
+                var creatureId = Convert.ToInt32(txtEntry.Text);
+                cbName.SelectedValue = creatureId;
+                Creature result = creatures.FirstOrDefault(a => a.Entry == creatureId);
+                if (result != null)
+                {
+                    activeCreature = result;
+                    originalCreature = (Creature)result.Clone();
+                    displayCreatureData();
+                    recalculateCombatStats();
+                    updateClassLevelStats();
+                }
+                else
+                {
+                    MessageBox.Show("No creature found.");
+                }
             }
-            else
+            catch
             {
-                MessageBox.Show("No creature found.");
+                MessageBox.Show("No creature found - invalid entry.");
             }
         }
 
@@ -1052,79 +1062,20 @@ namespace CreatureEditor
             }
         }
 
-        private bool isNotValidEntryForTBC(UpdateObjectData data)
+        private bool isInvalidEntryForTBC(UpdateObjectData data)
         {
             return creatures.Count(a => a.Entry == data.Entry) == 0;
         }
 
         private void printResults(List<UpdateObjectData> results)
         {
-            List<UpdateObjectData> resultsCopy = new List<UpdateObjectData>();
+            var timestamp = DateTime.Now.ToFileTime();
+            string fileName = "results_" + timestamp + ".txt";
 
-            tbSniffAnalysis.AppendText(Environment.NewLine + "Initial search done... examining and combining results...");
+            tbSniffAnalysis.AppendText(Environment.NewLine + "Making comparisons to existing data and printing final results...");
+            Refresh();
 
-            int precount = results.Count;
-            results.RemoveAll(isNotValidEntryForTBC);
-            int newcount = results.Count;
-
-            tbSniffAnalysis.AppendText(Environment.NewLine + "Removed " + (precount - newcount) + " results as they do not pertain to TBC.");
-
-            int count = 1;
-            // first pass - try to combine some data
-            foreach (UpdateObjectData result in results)
-            {
-                bool specialSnowflake = false;
-
-                if (count % 1000 == 0)
-                    tbSniffAnalysis.AppendText(Environment.NewLine + "Completed post-processing for " + count + " of " + results.Count + " results.");
-
-                // for each creature entry found, look for others in the results and try to create a single object from them
-                foreach (UpdateObjectData dup in results.Where(a => a.Entry == result.Entry).ToList())
-                {
-                    // find conflicting info - data which changes as result of spell or script?
-                    // don't try to combine records which have conflicts, just let them be
-                    if (dup.BaseAttackTime != null && result.BaseAttackTime != null && dup.BaseAttackTime != result.BaseAttackTime) specialSnowflake = true;
-                    if (dup.BoundingRadius != null && result.BoundingRadius != null && dup.BoundingRadius != result.BoundingRadius) specialSnowflake = true;
-                    if (dup.CombatReach != null && result.CombatReach != null && dup.CombatReach != result.CombatReach) specialSnowflake = true;
-                    if (dup.DisplayId != null && result.DisplayId != null && dup.DisplayId != result.DisplayId) specialSnowflake = true;
-                    if (dup.Faction != null && result.Faction != null && dup.Faction != result.Faction) specialSnowflake = true;
-                    if (dup.Level != null && result.Level != null && dup.Level != result.Level) specialSnowflake = true;
-                    if (dup.NpcFlags != null && result.NpcFlags != null && dup.NpcFlags != result.NpcFlags) specialSnowflake = true;
-                    if (dup.Scale != null && result.Scale != null && dup.Scale != result.Scale) specialSnowflake = true;
-                    if (dup.SpeedRun != null && result.SpeedRun != null && dup.SpeedRun != result.SpeedRun) specialSnowflake = true;
-                    if (dup.SpeedWalk != null && result.SpeedWalk != null && dup.SpeedWalk != result.SpeedWalk) specialSnowflake = true;
-                    if (dup.UnitFlags != null && result.UnitFlags != null && dup.UnitFlags != result.UnitFlags) specialSnowflake = true;
-
-                    // -------------------------------
-
-                    if (!specialSnowflake)
-                    {
-                        if (dup.BaseAttackTime != null && result.BaseAttackTime == null) result.BaseAttackTime = dup.BaseAttackTime;
-                        if (dup.BoundingRadius != null && result.BoundingRadius == null) result.BoundingRadius = dup.BoundingRadius;
-                        if (dup.CombatReach != null && result.CombatReach == null) result.CombatReach = dup.CombatReach;
-                        if (dup.DisplayId != null && result.DisplayId == null) result.DisplayId = dup.DisplayId;
-                        if (dup.Faction != null && result.Faction == null) result.Faction = dup.Faction;
-                        if (dup.Level != null && result.Level == null) result.Level = dup.Level;
-                        if (dup.NpcFlags != null && result.NpcFlags == null) result.NpcFlags = dup.NpcFlags;
-                        if (dup.Scale != null && result.Scale == null) result.Scale = dup.Scale;
-                        if (dup.SpeedRun != null && result.SpeedRun == null) result.SpeedRun = dup.SpeedRun;
-                        if (dup.SpeedWalk != null && result.SpeedWalk == null) result.SpeedWalk = dup.SpeedWalk;
-                        if (dup.UnitFlags != null && result.UnitFlags == null) result.UnitFlags = dup.UnitFlags;
-                    }
-                }
-
-                if (results.Count(a => a.Entry == result.Entry) == 1 || specialSnowflake)
-                    resultsCopy.Add(result);
-                // only add one of the combined records if there were no snowflakes found
-                else if (results.Count(a => a.Entry == result.Entry) > 1 && resultsCopy.Count(a => a.Entry == result.Entry) == 0)
-                    resultsCopy.Add(result);
-
-                count++;
-            }
-
-            tbSniffAnalysis.AppendText(Environment.NewLine + "All post-processing finished! Printing final results...");
-
-            foreach (UpdateObjectData newData in resultsCopy)
+            foreach (UpdateObjectData newData in results)
             {
                 Creature existing = creatures.FirstOrDefault(a => a.Entry == newData.Entry);
                 string differences = string.Empty;
@@ -1187,12 +1138,16 @@ namespace CreatureEditor
                 }
                 if (differences != "")
                 {
-                    differences = Environment.NewLine + existing.Name + ", Entry: " + existing.Entry + differences;
+                    differences = Environment.NewLine + "------------------------------------------------" + Environment.NewLine + existing.Name + ", Entry: " + existing.Entry + differences;
                     updateQuery = updateQuery + " WHERE `Entry`=" + existing.Entry + "; -- " + existing.Name;
                     updateQuery = updateQuery.Replace(",  W", " W");
 
                     if (!tbSniffAnalysis.Text.Contains(updateQuery))
+                    {
                         tbSniffAnalysis.AppendText(updateQuery);
+                        File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\" + fileName, differences);
+                        File.AppendAllText(AppDomain.CurrentDomain.BaseDirectory + @"\" + fileName, updateQuery);
+                    }
 
                     Update();
                 }
@@ -1206,28 +1161,79 @@ namespace CreatureEditor
             UpdateObjectData newData = new UpdateObjectData();
             var results = new List<UpdateObjectData>();
             string[] files = Directory.GetFiles(tbSearchDirectory.Text, "*.txt", SearchOption.AllDirectories);
-            int counter = 0;
+            int fileCounter = 0;
             foreach (var f in files)
             {
-                if (counter == 3)
-                {
-                    break;
-                }
+                if (fileCounter == 1) break; // temp
 
-                foreach (var l in File.ReadAllLines(f))
+                var stopwatch = new Stopwatch();
+                stopwatch.Start();
+
+                tbSniffAnalysis.AppendText(Environment.NewLine + "[" + f + "]" + Environment.NewLine + "Size: " + (new System.IO.FileInfo(f).Length / 1024f) / 1024f + " MB" + Environment.NewLine + "Started parsing...");
+                Update();
+
+                string[] lines = File.ReadAllLines(f);
+                int lineCounter = 0;
+                int totalLines = lines.Length;
+                foreach (var l in lines)
                 {
+                    // we've reached the beginning of a new portion of the update object packet which could hold data for a new creature
                     if (!l.Contains("UNIT_FIELD_TARGET") && !l.Contains("MoverGUID") && (l.Contains(" Entry: ") || l.Contains(" Player/0 ")))
                     {
-                        if (newData.Entry != null)
+                        // if we were already were tracking data on a previous creature, check to see if that data needs to be saved off to the model
+                        if (newData.Entry != 0)
                         {
                             if (!results.Contains(newData))
                             {
-                                results.Add(newData);
+                                if (!isInvalidEntryForTBC(newData))
+                                {
+                                    bool specialSnowflake = false;
+                                    foreach (UpdateObjectData dup in results.Where(a => a.Entry == newData.Entry).ToList())
+                                    {
+                                        // find conflicting info - data which changes as result of spell or script?
+                                        // don't try to combine records which have conflicts, just let them be
+                                        if (dup.BaseAttackTime != null && newData.BaseAttackTime != null && dup.BaseAttackTime != newData.BaseAttackTime) specialSnowflake = true;
+                                        if (dup.BoundingRadius != null && newData.BoundingRadius != null && dup.BoundingRadius != newData.BoundingRadius) specialSnowflake = true;
+                                        if (dup.CombatReach != null && newData.CombatReach != null && dup.CombatReach != newData.CombatReach) specialSnowflake = true;
+                                        if (dup.DisplayId != null && newData.DisplayId != null && dup.DisplayId != newData.DisplayId) specialSnowflake = true;
+                                        if (dup.Faction != null && newData.Faction != null && dup.Faction != newData.Faction) specialSnowflake = true;
+                                        if (dup.Level != null && newData.Level != null && dup.Level != newData.Level) specialSnowflake = true;
+                                        if (dup.NpcFlags != null && newData.NpcFlags != null && dup.NpcFlags != newData.NpcFlags) specialSnowflake = true;
+                                        if (dup.Scale != null && newData.Scale != null && dup.Scale != newData.Scale) specialSnowflake = true;
+                                        if (dup.SpeedRun != null && newData.SpeedRun != null && dup.SpeedRun != newData.SpeedRun) specialSnowflake = true;
+                                        if (dup.SpeedWalk != null && newData.SpeedWalk != null && dup.SpeedWalk != newData.SpeedWalk) specialSnowflake = true;
+                                        if (dup.UnitFlags != null && newData.UnitFlags != null && dup.UnitFlags != newData.UnitFlags) specialSnowflake = true;
+
+                                        // combine data from other records if the current one has no conflicts with it
+                                        if (!specialSnowflake)
+                                        {
+                                            if (dup.BaseAttackTime != null && newData.BaseAttackTime == null) newData.BaseAttackTime = dup.BaseAttackTime;
+                                            if (dup.BoundingRadius != null && newData.BoundingRadius == null) newData.BoundingRadius = dup.BoundingRadius;
+                                            if (dup.CombatReach != null && newData.CombatReach == null) newData.CombatReach = dup.CombatReach;
+                                            if (dup.DisplayId != null && newData.DisplayId == null) newData.DisplayId = dup.DisplayId;
+                                            if (dup.Faction != null && newData.Faction == null) newData.Faction = dup.Faction;
+                                            if (dup.Level != null && newData.Level == null) newData.Level = dup.Level;
+                                            if (dup.NpcFlags != null && newData.NpcFlags == null) newData.NpcFlags = dup.NpcFlags;
+                                            if (dup.Scale != null && newData.Scale == null) newData.Scale = dup.Scale;
+                                            if (dup.SpeedRun != null && newData.SpeedRun == null) newData.SpeedRun = dup.SpeedRun;
+                                            if (dup.SpeedWalk != null && newData.SpeedWalk == null) newData.SpeedWalk = dup.SpeedWalk;
+                                            if (dup.UnitFlags != null && newData.UnitFlags == null) newData.UnitFlags = dup.UnitFlags;
+                                        }
+                                    }
+
+                                    if (specialSnowflake || !results.Contains(newData))
+                                        results.Add(newData);
+                                }
                             }
                         }
+
                         newData = new UpdateObjectData();
+
                         if (!l.Contains(" Player/0 "))
-                            newData.Entry = l.Split(new string[] { " Entry: " }, StringSplitOptions.None)[1].Split(' ')[0];
+                        {
+                            int entry = Convert.ToInt32(l.Split(new string[] { " Entry: " }, StringSplitOptions.None)[1].Split(' ')[0]);
+                            newData.Entry = entry;
+                        }
                     }
                     else if (l.Contains("OBJECT_FIELD_SCALE: "))
                     {
@@ -1243,7 +1249,7 @@ namespace CreatureEditor
                     }
                     else if (l.Contains("UNIT_FIELD_FLAGS: "))
                     {
-                        newData.UnitFlags = l.Split(new string[] { "FLAGS: " }, StringSplitOptions.None)[1];
+                        newData.UnitFlags = l.Split(new string[] { "FLAGS: " }, StringSplitOptions.None)[1].Split('/')[0];
                     }
                     else if (l.Contains("UNIT_FIELD_BASEATTACKTIME: "))
                     {
@@ -1273,12 +1279,21 @@ namespace CreatureEditor
                     {
                         newData.SpeedRun = Math.Round((Convert.ToDouble(l.Split(new string[] { "RunSpeed: " }, StringSplitOptions.None)[1]) / 7.0), 5).ToString();
                     }
+
+                    lineCounter++;
+                    if (lineCounter % 10000 == 0)
+                    {
+                        tbSniffAnalysis.AppendText(Environment.NewLine + lineCounter + " of " + totalLines + " lines parsed. (" + Math.Round((double)lineCounter / totalLines * 100, 2) + "%)");
+                        Update();
+                    }
                 }
 
-                counter++;
-                tbSniffAnalysis.AppendText("[" + f + "] Finished parsing " + counter + " of " + files.Length + " files. " + results.Count + " data points (updateObject-creatures) found so far." + Environment.NewLine);
+                stopwatch.Stop();
+                fileCounter++;
+                tbSniffAnalysis.AppendText(Environment.NewLine + "Finished - parsing took " + stopwatch.ElapsedMilliseconds/1000f + " seconds." + Environment.NewLine + fileCounter + " of " + files.Length + " total files completed. " + Environment.NewLine + results.Count + " data points (updateObject-creatures) found so far.");
                 Update();
             }
+
             List<UpdateObjectData> sortedResults = results.OrderBy(o => o.Entry).ToList();
             printResults(sortedResults);
             btnStartSniffAnalysis.Enabled = true;
@@ -1289,6 +1304,8 @@ namespace CreatureEditor
         {
             using(var fbd = new FolderBrowserDialog())
             {
+                fbd.SelectedPath = tbSearchDirectory.Text;
+
                 DialogResult result = fbd.ShowDialog();
 
                 if (result == DialogResult.OK && !string.IsNullOrWhiteSpace(fbd.SelectedPath))
@@ -1296,6 +1313,20 @@ namespace CreatureEditor
                     tbSearchDirectory.Text = fbd.SelectedPath;
                 }
             }
+        }
+
+        private void tbSearchDirectory_TextChanged(object sender, EventArgs e)
+        {
+            if (!String.IsNullOrWhiteSpace(tbSearchDirectory.Text))
+            {
+                Settings1.Default.sniffPath = tbSearchDirectory.Text;
+                Settings1.Default.Save();
+            }
+        }
+
+        private void frmMain_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }

@@ -32,6 +32,7 @@ namespace CreatureEditor
                 t.SelectedIndex = 0;
 
                 panel1.Visible = false;
+                Hide();
             }
             catch (Exception ex)
             {

@@ -48,7 +48,7 @@ namespace CreatureEditor
     class Creature : ICloneable
     {
         // Creature Template
-        public string Entry { get; set; }
+        public int Entry { get; set; }
         public string Name { get; set; }
         public string Title { get; set; } // SubName
         public string CreatureType  { get; set; }
@@ -150,7 +150,7 @@ namespace CreatureEditor
 
     class UpdateObjectData : ICloneable
     {
-        public string Entry { get; set; }
+        public int Entry { get; set; } = 0;
         public string Scale { get; set; }
         public string Level { get; set; }
         public string Faction { get; set; }
@@ -396,7 +396,7 @@ namespace CreatureEditor
                 {
                     Creature c = new Creature()
                     {
-                        Entry = dataReader["Entry"].ToString(),
+                        Entry = Convert.ToInt32(dataReader["Entry"]),
                         Name = dataReader["Name"].ToString(),
                         Title = dataReader["SubName"].ToString(),
                         CreatureType = dataReader["CreatureType"].ToString(),
