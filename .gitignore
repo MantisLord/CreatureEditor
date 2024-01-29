@@ -1,5 +1,6 @@
-.vs/CreatureEditor/v15/Server/sqlite3/*
 CreatureEditor/obj/Debug/*
 CreatureEditor/bin/Debug/*
-.vs/CreatureEditor/v15/.suo
-.vs/CreatureEditor/v14/.suo
+*.vsidx
+*.suo
+CreatureEditor/.vs/CreatureEditor.csproj.dtbcache.json
+packages/*

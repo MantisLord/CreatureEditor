@@ -50,7 +50,7 @@
             this.txtDatabase.Name = "txtDatabase";
             this.txtDatabase.Size = new System.Drawing.Size(113, 20);
             this.txtDatabase.TabIndex = 0;
-            this.txtDatabase.Text = "voamangos";
+            this.txtDatabase.Text = "tbcmangos";
             // 
             // txtServer
             // 
